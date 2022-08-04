@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-11T09:20:02.0347893",
+  "status": 400,
+  "message": "javax.validation.ConstraintViolationException: create.product.profileId: profileId must not be Null, create.product.profileId: profileId must not be Null",
+  "data": null,
+  "path": "/api/v1/product/",
+  "ok": false
+}

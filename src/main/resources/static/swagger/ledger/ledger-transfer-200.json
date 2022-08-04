@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-08T18:16:56.973177",
+  "status": 200,
+  "message": "After transfer, from wallet balance=999990000, to wallet balance=1000010000",
+  "data": null,
+  "path": "/api/v1/ledger/transfer",
+  "ok": true
+}

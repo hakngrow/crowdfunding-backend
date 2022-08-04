@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-15T12:20:59.4314107",
+  "status": 200,
+  "message": "Request with id=1, repayment=888 updated",
+  "data": null,
+  "path": "/api/v1/request/id/1/repayment/888",
+  "ok": true
+}

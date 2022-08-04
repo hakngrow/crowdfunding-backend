@@ -1,0 +1,52 @@
+{
+  "timestamp": "2022-07-18T16:51:16.1411388",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 2,
+    "fromProfileId": 2,
+    "toProfileId": 1,
+    "requestId": 1,
+    "title": "Single Patient Dialysis Machine TR-8000",
+    "type": "PRO",
+    "status": "FR",
+    "description": "The single patients dialysis machine can perform prescribed dialysis which adjust the dialysate conductivity in accordance with each patient. It mainly consists of Monitor/alarm part, Dialysate supply/UF control part, Extracorporeal blood circuit part, and Electrical control part.",
+    "cost": 1200000,
+    "repayment": null,
+    "specifications": "Supported by the advanced technologies of TORAY, TR-8000 offers comfortable dialysis treatment to patients, easy operation to medical staff and contributes to medical development.\n\n- Easy operability by changing the position of external parts\n- The position of rinse ports, couplers and bicarbonate cartridge was changed and you can operate them without squat.\n- Casters became larger and you can move it by less power.\nImprovement of standard functions\n- The chamber level adjustment has been newly equipped as standard\n- Self-test time became shorter\nVarious new options and accessories\n- BVM, Kt/V indicator, Bicarbonate cartridge, etc.",
+    "createdTimestamp": "2022-07-18T08:48:44.276",
+    "fromProfile": {
+      "id": 2,
+      "username": "toraymed",
+      "password": "$2a$10$/zDLxWg9A44YrJReBxLCee9vm7jzC3WJhkVxNeAe1V52zZ7FXmKxy",
+      "firstName": "Toray",
+      "lastName": "Medical",
+      "email": "toray@gmail.com",
+      "phone": "98760002",
+      "userType": "S",
+      "registrationDate": "2022-07-18T16:45:09.636589",
+      "walletId": "SXLRdrywXBntChoDLPjEF1KDQH95eu5EvkA4Uge1hjU"
+    },
+    "toProfile": {
+      "id": 1,
+      "username": "sbipcc",
+      "password": "$2a$10$IENpCwlTjYEb4UMBuJL1/elpUP2SOGivoDdPhSoX2rb1JiH0NZE1G",
+      "firstName": "SBIP",
+      "lastName": "Community Clinic",
+      "email": "sbip-clinic@gmail.com",
+      "phone": "98760001",
+      "userType": "U",
+      "registrationDate": "2022-07-18T16:45:09.636589",
+      "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+    },
+    "open": false,
+    "accepted": false,
+    "closed": false,
+    "rfp": false,
+    "pro": true,
+    "rff": false,
+    "rejected": false
+  },
+  "path": "/api/v1/request/id/2",
+  "ok": true
+}

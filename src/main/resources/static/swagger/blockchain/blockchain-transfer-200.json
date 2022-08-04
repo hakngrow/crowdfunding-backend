@@ -1,0 +1,14 @@
+{
+  "timestamp": "2022-06-07T14:47:24.9895932",
+  "status": 200,
+  "message": "",
+  "data": {
+    "symbol": "SOL",
+    "txHash": "45ieFsAUs4N7rTnCPBnErHr92rpxANRVH8h4otZo4warhDfM7j3md1YpLW8X5BG3KBbCWpMDjVnnMEKTc9gKJJ9q",
+    "address": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se",
+    "receiver": "5tjN3DGqz5eYjNPipT2Vv9U2gRgqdjo62DE1QjxbC5DK",
+    "transferAmount": 10,
+    "units": "lamport"
+  },
+  "path": "/api/v1/blockchain/transfer"
+}

@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-07T12:03:33.8729801",
+  "status": 400,
+  "message": "ConstraintViolationException: update.funding.disbursedAmount: disbursedAmount must be at least 1, update.funding.disbursedAmount: disbursedAmount must be positive",
+  "data": null,
+  "path": "/api/v1/funding/",
+  "ok": false
+}

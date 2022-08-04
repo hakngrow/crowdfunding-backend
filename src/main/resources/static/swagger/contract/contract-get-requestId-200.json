@@ -1,0 +1,20 @@
+{
+  "timestamp": "2022-07-13T11:30:23.2326168",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "requestId": 3,
+    "walletId": "GAyCywe7wYQ49XA92BrDBVvj2CMKeEGMmGjseQR3yFua",
+    "targetAmount": 1000000,
+    "repaymentAmount": 1300000,
+    "status": "O",
+    "createdTimestamp": "2022-07-06T20:48:28.4621798",
+    "fundings": [],
+    "outstandingAmount": 1000000,
+    "raisedAmount": 0,
+    "yield": 30
+  },
+  "path": "/api/v1/contract/",
+  "ok": true
+}

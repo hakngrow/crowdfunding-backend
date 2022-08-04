@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-13T21:46:04.4759978",
+  "status": 400,
+  "message": "ConstraintViolationException: createRequestForFunding.request.cost: cost must be at least 1, createRequestForFunding.request.cost: cost must be positive",
+  "data": null,
+  "path": "/api/v1/request/rff/",
+  "ok": false
+}

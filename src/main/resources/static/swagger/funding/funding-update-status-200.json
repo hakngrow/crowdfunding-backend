@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-07T12:11:33.302206",
+  "status": 200,
+  "message": "Funding with id=1, status=D updated",
+  "data": null,
+  "path": "/api/v1/funding/id/1/status/D",
+  "ok": true
+}

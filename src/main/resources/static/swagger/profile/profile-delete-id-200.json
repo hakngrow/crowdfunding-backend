@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-05-24T12:12:13.1852669",
+  "status": 200,
+  "message": "User profile with id=1 deleted.",
+  "data": {
+    "id": 1,
+    "username": "superman",
+    "password": "$2a$10$yA3n4WnfWr0vHXsFMItoGe5bGKK.F6FX3rNJ22GA2/DJ2M/CNzccW",
+    "firstName": "clark",
+    "lastName": "kent",
+    "email": "superman@gmail.com",
+    "phone": "98760001",
+    "userType": "U",
+    "registrationDate": "2022-05-24T11:57:25.268969",
+    "walletId": "0x12340001"
+  },
+  "path": "/api/v1/profile/id/1"
+}

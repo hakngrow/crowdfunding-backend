@@ -1,0 +1,32 @@
+{
+  "timestamp": "2022-06-05T18:16:03.8964823",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 9,
+      "receiverWalletId": "aabbccddee",
+      "senderWalletId": "abcdabcdabcd",
+      "receiverAmount": 22,
+      "senderAmount": 222,
+      "receiverBalance": 2222,
+      "senderBalance": 22222,
+      "createdTimestamp": "2022-06-03T15:31:49.142644",
+      "property": 2,
+      "hash": "222hhh"
+    },
+    {
+      "id": 10,
+      "receiverWalletId": "aabbccddee",
+      "senderWalletId": "zzzxxxyyyzzz",
+      "receiverAmount": 33,
+      "senderAmount": 333,
+      "receiverBalance": 3333,
+      "senderBalance": 33333,
+      "createdTimestamp": "2022-06-03T15:31:49.142644",
+      "property": 3,
+      "hash": "333333"
+    }
+  ],
+  "path": "/api/v1/transaction/receiver/aabbccddee"
+}

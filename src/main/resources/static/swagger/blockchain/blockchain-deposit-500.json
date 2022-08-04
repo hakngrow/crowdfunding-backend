@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-06-07T12:32:29.4025581",
+  "status": 500,
+  "message": "Internal server error",
+  "data": null,
+  "path": "/api/v1/blockchain/deposit"
+}

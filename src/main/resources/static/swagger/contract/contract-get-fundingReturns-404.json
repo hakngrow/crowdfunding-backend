@@ -1,0 +1,1 @@
+{"timestamp":"2022-07-10T15:17:39.6010647","status":404,"message":"EntityNotFoundException: Contract with id=99 NOT found.","data":null,"path":"/api/v1/contract/fundingReturns/id/99/amount/300000","ok":false}

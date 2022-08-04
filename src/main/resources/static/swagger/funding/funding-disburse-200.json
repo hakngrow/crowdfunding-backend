@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-19T15:06:39.1370387",
+  "status": 200,
+  "message": "Fundings disbursed, ids=[1, 2]",
+  "data": null,
+  "path": "/api/v1/funding/disburse/",
+  "ok": true
+}

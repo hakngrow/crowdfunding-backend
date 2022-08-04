@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-12T18:02:39.2763604",
+  "status": 400,
+  "message": "javax.validation.ConstraintViolationException: update.request.type: type must contain between 1 to 10 characters, update.request.type: type must not be blank",
+  "data": null,
+  "path": "/api/v1/request/",
+  "ok": false
+}

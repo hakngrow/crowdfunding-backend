@@ -1,0 +1,32 @@
+{
+  "timestamp": "2022-06-05T18:42:10.4509743",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 9,
+      "receiverWalletId": "eeefffggghhh",
+      "senderWalletId": "ironmanWallet",
+      "receiverAmount": 11,
+      "senderAmount": 111,
+      "receiverBalance": 1111,
+      "senderBalance": 11111,
+      "createdTimestamp": "2022-06-03T15:31:49.142644",
+      "property": 1,
+      "hash": "111111"
+    },
+    {
+      "id": 10,
+      "receiverWalletId": "thorwallet",
+      "senderWalletId": "ironmanWallet",
+      "receiverAmount": 22,
+      "senderAmount": 222,
+      "receiverBalance": 2222,
+      "senderBalance": 22222,
+      "createdTimestamp": "2022-06-03T15:31:49.142644",
+      "property": 2,
+      "hash": "2222"
+    }
+  ],
+  "path": "/api/v1/transaction/sender/ironmanwallet"
+}

@@ -1,0 +1,55 @@
+{
+  "timestamp": "2022-07-19T15:37:37.1660591",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "requestId": 3,
+    "walletId": "GAyCywe7wYQ49XA92BrDBVvj2CMKeEGMmGjseQR3yFua",
+    "targetAmount": 1000,
+    "repaymentAmount": 1300,
+    "status": "FD",
+    "createdTimestamp": "2022-07-19T15:31:35.812973",
+    "fundings": [
+      {
+        "id": 1,
+        "contractId": 1,
+        "profileId": 4,
+        "status": "FD",
+        "fundingAmount": 400,
+        "repaymentAmount": 520,
+        "disbursedAmount": 520,
+        "createdTimestamp": "2022-07-19T15:34:41.25571",
+        "profile": null
+      },
+      {
+        "id": 2,
+        "contractId": 1,
+        "profileId": 5,
+        "status": "FD",
+        "fundingAmount": 300,
+        "repaymentAmount": 390,
+        "disbursedAmount": 390,
+        "createdTimestamp": "2022-07-19T15:35:24.14161",
+        "profile": null
+      },
+      {
+        "id": 3,
+        "contractId": 1,
+        "profileId": 4,
+        "status": "FD",
+        "fundingAmount": 300,
+        "repaymentAmount": 390,
+        "disbursedAmount": 390,
+        "createdTimestamp": "2022-07-19T15:35:38.390228",
+        "profile": null
+      }
+    ],
+    "request": null,
+    "outstandingAmount": 0,
+    "yield": 30,
+    "raisedAmount": 1000
+  },
+  "path": "/api/v1/contract/disburse/1",
+  "ok": true
+}

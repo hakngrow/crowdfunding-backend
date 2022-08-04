@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-05-25T12:14:45.4085163",
+  "status": 404,
+  "message": "Attachment with id=6 NOT found.",
+  "data": null,
+  "path": "/api/v1/attachment/id/6"
+}

@@ -1,0 +1,39 @@
+{
+  "timestamp": "2022-06-11T16:43:15.1542426",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 1,
+      "profileId": 2,
+      "name": "Epson T3-B All-in-One SCARA Robot",
+      "type": "SCARA",
+      "description": "The ideal alternative to slide-based solutions, All-in-One design includes power for end-of-arm tooling, 4 built-in axes in one compact design. Perfect for pick and place, simple assembly, material handing and dispensing.",
+      "price": 1000000,
+      "specifications": "Designed to seamlessly fit in a variety of workspaces, this all-in-one solution features a built-in controller, power for end-of-arm tooling and 110 V or 220 V power—virtually eliminating any space-constraint issues. Plus, it offers a 400 mm reach and a payload of up to 3 kg to easily handle a variety of tasks.",
+      "createdTimestamp": "2022-06-11T16:36:34.410758"
+    },
+    {
+      "id": 2,
+      "profileId": 2,
+      "name": "Epson VT6L All-in-One 6-Axis Robot",
+      "type": "6-AXIS",
+      "description": "Features Slimline design perfect for factories with limited floor space and compact wrist pitch that enables robot easy access to hard-to-reach areas. Ideal for load/ unload, packaging or parts assembly applications. Cleanroom (ISO4) and Protected (IP67) models available.",
+      "price": 2000000,
+      "specifications": "VT6L offers a reach up to 900 mm and a payload up to 6 kg. A feature-packed performer, it includes a built-in controller, plus simplified cabling with a hollow end-of-arm design – all at a remarkably low cost, in a compact, SlimLine structure. The VT6L offers 110 V and 220 V power and installs in minutes.",
+      "createdTimestamp": "2022-06-11T16:36:34.410758"
+    },
+    {
+      "id": 3,
+      "profileId": 6,
+      "name": "TX2touch-90 POWER cobot",
+      "type": "COBOT",
+      "description": "TX2touch is the only cobot with the SIL3/PLe safety level. It is highly productive due to the performance, smart connectivity and reliability inherited from TX2 robots and its CS9 controller.",
+      "price": 2000000,
+      "specifications": "The TX2touch-90 series has a payload of up to 10 kg with a maximum reach of 1450 mm.",
+      "createdTimestamp": "2022-06-11T16:36:34.410758"
+    }
+  ],
+  "path": "/api/v1/product/",
+  "ok": true
+}

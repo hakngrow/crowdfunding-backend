@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-13T11:32:34.4282158",
+  "status": 400,
+  "message": "FundingAmountException: Funding amount of 800000000000000, exceeds outstanding amount of 1000000",
+  "data": null,
+  "path": "/api/v1/contract/fund/1",
+  "ok": false
+}

@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-05-23T11:34:15.1883792",
+  "status": 200,
+  "message": "ping pong",
+  "data": null,
+  "path": "/api/v1/profile/ping"
+}

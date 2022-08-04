@@ -1,0 +1,12 @@
+{
+  "id": 9,
+  "type": "M",
+  "receiverWalletId": "5tjN3DGqz5eYjNPipT2Vv9U2gRgqdjo62DE1QjxbC5DK",
+  "senderWalletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se",
+  "receiverAmount": 8000,
+  "senderAmount": -6000,
+  "receiverBalance": -700000,
+  "senderBalance": 222000,
+  "createdTimestamp": "2022-06-03T15:31:49.1426443"
+}
+

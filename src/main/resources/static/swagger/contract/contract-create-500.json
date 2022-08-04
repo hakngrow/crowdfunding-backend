@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-07T14:15:48.1395338",
+  "status": 500,
+  "message": "DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [contracts.UK_434pfjd6i1d3aq4f2lyl0nlc8]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement",
+  "data": null,
+  "path": "/api/v1/contract/",
+  "ok": false
+}

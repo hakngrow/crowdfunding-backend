@@ -1,0 +1,12 @@
+{
+  "timestamp": "2022-06-03T15:48:10.5393986",
+  "status": 200,
+  "message": "",
+  "data": {
+    "address": "5tjN3DGqz5eYjNPipT2Vv9U2gRgqdjo62DE1QjxbC5DK",
+    "balance": 1000000000,
+    "symbol": "SOL",
+    "units": "lamport"
+  },
+  "path": "/api/v1/blockchain/wallet/balance/5tjN3DGqz5eYjNPipT2Vv9U2gRgqdjo62DE1QjxbC5DK"
+}

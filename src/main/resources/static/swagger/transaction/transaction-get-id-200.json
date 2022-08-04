@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-06-05T17:54:55.3948183",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 9,
+    "receiverWalletId": "aabbccddee",
+    "senderWalletId": "ffgghhiijj",
+    "receiverAmount": 44,
+    "senderAmount": 100,
+    "receiverBalance": 88,
+    "senderBalance": 99,
+    "createdTimestamp": "2022-06-03T15:31:49.142644",
+    "property": 77,
+    "hash": "XxxYyy"
+  },
+  "path": "/api/v1/transaction/id/9"
+}

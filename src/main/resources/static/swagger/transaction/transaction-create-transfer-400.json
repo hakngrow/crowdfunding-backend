@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-06-08T17:15:08.4487868",
+  "status": 400,
+  "message": "Required request parameter 'amount' for method parameter type long is not present",
+  "data": null,
+  "path": "/api/v1/transaction/transfer"
+}

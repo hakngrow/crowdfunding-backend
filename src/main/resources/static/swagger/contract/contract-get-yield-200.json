@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-10T14:27:44.3214999",
+  "status": 200,
+  "message": "",
+  "data": 20,
+  "path": "/api/v1/contract/yield/id/1",
+  "ok": true
+}

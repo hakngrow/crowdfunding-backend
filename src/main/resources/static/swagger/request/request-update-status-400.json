@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-15T12:17:50.1129511",
+  "status": 400,
+  "message": "javax.validation.ConstraintViolationException: updateStatus.id: must be greater than 0",
+  "data": null,
+  "path": "/api/v1/request/id/-9/status/C",
+  "ok": false
+}

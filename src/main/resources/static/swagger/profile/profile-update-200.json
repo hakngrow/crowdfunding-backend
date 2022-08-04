@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-05-24T15:38:34.7636703",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "username": "starlord",
+    "password": "$2a$10$Yf4ZSq2HvzulTOYoM5JGOOPg0VzAdvcmqVRC3vvIgQ2TCj5z6ACMm",
+    "firstName": "peter",
+    "lastName": "quill",
+    "email": "starlord@gmail.com",
+    "phone": "98760007",
+    "userType": "U",
+    "registrationDate": "2022-05-23T21:56:01.7593049",
+    "walletId": "0x12340007"
+  },
+  "path": "/api/v1/profile/"
+}

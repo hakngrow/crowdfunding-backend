@@ -1,0 +1,39 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Springshare//LibCal//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:Asia/Singapore
+X-PUBLISHED-TTL:PT15M
+BEGIN:VEVENT
+DTSTART:20220520T060000Z
+DTEND:20220520T080000Z
+DTSTAMP:20220520T000000Z
+SUMMARY:Jumpstart Minis : Create your first 3D Model (Part 2)
+DESCRIPTION:What is it?\n\nNew to 3D modelling and printing? Learn some 
+ basic design principles for 3D printing and create simple 3D models using 
+ freely available tools on Windows (Part 2).\n\nLearning 
+ Objectives\n\nParticipants will be able to:\n\n\n	Use TinkerCAD to create a 
+ model ready for 3D print\n\n\nWhat do you need?\n\n\n	Check the workshop's 
+ Teams\n\n	\n		You will be added to the workshop's Teams 3 working days 
+ before the day of the workshop.\n		Please refer to the announcements and 
+ workshop materials for more information\n	\n	\n	An account on 
+ TinkerCAD\n\n\nDigital Badge Requirements\n\nTo get the 3D Modeller (Basic) 
+ badge:\n\n\n	Attend both Parts 1 and 2\n	Create a 3D model using TinkerCAD 
+ and submit the .stl file output along with a write-up of the modelling 
+ process\n\n\n*Contents subject to change
+ORGANIZER;CN="TEL Imaginarium Team":MAILTO:telimaginarium@nus.edu.sg
+CATEGORIES:Design
+CONTACT;CN="TEL Imaginarium Team":MAILTO:telimaginarium@nus.edu.sg
+STATUS:CONFIRMED
+UID:LibCal-5419992
+URL:https://nus.libcal.com/event/5419992
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+
+END:VCALENDAR

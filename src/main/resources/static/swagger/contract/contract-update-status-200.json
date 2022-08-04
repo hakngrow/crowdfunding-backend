@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-06T21:44:42.1360758",
+  "status": 200,
+  "message": "Contract with id=1, status=FF updated",
+  "data": null,
+  "path": "/api/v1/contract/id/1/status/FF",
+  "ok": true
+}

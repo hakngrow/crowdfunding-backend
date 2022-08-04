@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-05-21T17:42:10.9282709",
+  "status": 200,
+  "message": "",
+  "data": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJhdG1hbiIsInJvbGVzIjoiUyIsImlhdCI6MTY1MzEyNjEzMCwiZXhwIjoxNjUzMTI3MDMwfQ.DRlg1WxXGOEwtYrAJDcjOmpUjCcyCYLXixpbjStqd00",
+  "path": "/api/v1/authenticate"
+}

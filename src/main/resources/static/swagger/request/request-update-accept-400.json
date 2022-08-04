@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-16T14:53:39.4793231",
+  "status": 400,
+  "message": "InvalidRequestTypeException: Unable to process request of type=RFS",
+  "data": null,
+  "path": "/api/v1/request/accept/id/3",
+  "ok": false
+}

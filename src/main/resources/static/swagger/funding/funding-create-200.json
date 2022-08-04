@@ -1,0 +1,17 @@
+{
+  "timestamp": "2022-07-07T11:50:17.2996416",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "contractId": 23,
+    "profileId": "30",
+    "status": "F",
+    "fundingAmount": 9999,
+    "disbursedAmount": 1000,
+    "createdTimestamp": "2022-07-07T11:37:19.3288777",
+    "profile": null
+  },
+  "path": "/api/v1/funding/",
+  "ok": true
+}

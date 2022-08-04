@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-06T21:37:42.5905848",
+  "status": 400,
+  "message": "ConstraintViolationException: update.contract.targetAmount: targetAmount must be positive, update.contract.targetAmount: targetAmount must be at least 1",
+  "data": null,
+  "path": "/api/v1/contract/",
+  "ok": false
+}

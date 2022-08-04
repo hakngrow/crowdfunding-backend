@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-12T21:37:10.1526965",
+  "status": 200,
+  "message": "Requests with profile id=1 deleted.",
+  "data": null,
+  "path": "/api/v1/request/profileId/1",
+  "ok": true
+}

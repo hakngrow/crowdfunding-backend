@@ -1,0 +1,39 @@
+{
+  "timestamp": "2022-07-07T14:40:52.2393521",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 1,
+      "contractId": 23,
+      "profileId": "30",
+      "status": "F",
+      "fundingAmount": 9999,
+      "disbursedAmount": 1000,
+      "createdTimestamp": "2022-07-07T11:37:19.328878",
+      "profile": null
+    },
+    {
+      "id": 2,
+      "contractId": 23,
+      "profileId": "30",
+      "status": "F",
+      "fundingAmount": 9999,
+      "disbursedAmount": 1000,
+      "createdTimestamp": "2022-07-07T11:37:19.328878",
+      "profile": null
+    },
+    {
+      "id": 3,
+      "contractId": 23,
+      "profileId": "30",
+      "status": "F",
+      "fundingAmount": 9999,
+      "disbursedAmount": 1000,
+      "createdTimestamp": "2022-07-07T11:37:19.328878",
+      "profile": null
+    }
+  ],
+  "path": "/api/v1/funding/",
+  "ok": true
+}

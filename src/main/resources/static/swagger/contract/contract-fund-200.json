@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-07-13T11:31:16.8508065",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "contractId": 1,
+    "profileId": 4,
+    "status": "FIC",
+    "fundingAmount": 8000,
+    "repaymentAmount": 10400,
+    "disbursedAmount": 0,
+    "createdTimestamp": "2022-07-13T11:31:16.7396355",
+    "profile": null
+  },
+  "path": "/api/v1/contract/fund/1",
+  "ok": true
+}

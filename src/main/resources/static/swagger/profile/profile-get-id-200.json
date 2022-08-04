@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-05-23T16:06:11.0307498",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 3,
+    "username": "ironman",
+    "password": "$2a$10$fp4fhzObKPfQwuEW0BrpfuTe8kVnfuUU9wFZzIPwbyUxa7as75q7m",
+    "firstName": "tony",
+    "lastName": "starks",
+    "email": "ironman@gmail.com",
+    "phone": "98760003",
+    "userType": "I",
+    "registrationDate": "2022-05-23T16:03:50.195722",
+    "walletId": "0x12340003"
+  },
+  "path": "/api/v1/profile/id/3"
+}

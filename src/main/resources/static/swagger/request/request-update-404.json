@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-12T18:03:50.4649064",
+  "status": 404,
+  "message": "Request with id=99 NOT found.",
+  "data": null,
+  "path": "/api/v1/request/",
+  "ok": false
+}

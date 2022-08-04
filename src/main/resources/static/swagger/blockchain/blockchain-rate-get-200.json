@@ -1,0 +1,12 @@
+{
+  "timestamp": "2022-05-26T16:11:56.849452",
+  "status": 200,
+  "message": "",
+  "data": {
+    "time": "2022-05-26T08:11:56.4",
+    "asset_id_base": "SOL",
+    "asset_id_quote": "USD",
+    "rate": 45.990594735807484
+  },
+  "path": "/api/v1/blockchain/rate/sol/usd"
+}

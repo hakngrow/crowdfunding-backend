@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-06-07T23:34:50.0478077",
+  "status": 404,
+  "message": "User profile with email=thor@gmail.com NOT found.",
+  "data": null,
+  "path": "/api/v1/profile/email/thor@gmail.com"
+}

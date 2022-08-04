@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-06T21:46:48.1368921",
+  "status": 400,
+  "message": "ConstraintViolationException: updateStatus.id: must be greater than 0",
+  "data": null,
+  "path": "/api/v1/contract/id/0/status/FF",
+  "ok": false
+}

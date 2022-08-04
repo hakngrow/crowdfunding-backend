@@ -1,0 +1,665 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Aestus API Specification",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/profile/": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "summary": "Retrieve all user profiles",
+        "operationId": "getAll",
+        "responses": {
+          "200": {
+            "description": "Returns all user profiles",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Return all user profiles": {
+                    "description": "Returns all user profiles as an array in the <b>data</b> field",
+                    "value": "{\n  \"timestamp\": \"2022-05-23T12:02:41.9514056\",\n  \"status\": 200,\n  \"message\": \"\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"username\": \"superman\",\n      \"password\": \"$2a$10$x.mpVCxlINrOXQlxejrsUeEf4cdZFIim1tt9Ewl4./6esw0dMctIe\",\n      \"firstName\": \"clark\",\n      \"lastName\": \"kent\",\n      \"email\": \"superman@gmail.com\",\n      \"phone\": \"98760001\",\n      \"userType\": \"U\",\n      \"registrationDate\": \"2022-05-23T11:42:07.891166\",\n      \"walletId\": \"0x12340001\"\n    },\n    {\n      \"id\": 2,\n      \"username\": \"batman\",\n      \"password\": \"$2a$10$905pmsxf0ewjnCsMkVVJq..bZrxqmwcSIqp24cVdK4kgzSrjbVhi2\",\n      \"firstName\": \"bruce\",\n      \"lastName\": \"wane\",\n      \"email\": \"batman@gmail.com\",\n      \"phone\": \"98760002\",\n      \"userType\": \"S\",\n      \"registrationDate\": \"2022-05-23T11:42:07.891166\",\n      \"walletId\": \"0x12340002\"\n    },\n    {\n      \"id\": 3,\n      \"username\": \"ironman\",\n      \"password\": \"$2a$10$okbGBYzX61ZyvTtQhEU8ue3ht1HBjn51HdCBdhbccgGKklYYk8fxG\",\n      \"firstName\": \"tony\",\n      \"lastName\": \"starks\",\n      \"email\": \"ironman@gmail.com\",\n      \"phone\": \"98760003\",\n      \"userType\": \"I\",\n      \"registrationDate\": \"2022-05-23T11:42:07.891166\",\n      \"walletId\": \"0x12340003\"\n    },\n    {\n      \"id\": 4,\n      \"username\": \"spiderman\",\n      \"password\": \"$2a$10$C3p80vNZC.vuZtyUmR5wRertmoB4KxOpElWvTEjLABPvBXEv/03/.\",\n      \"firstName\": \"peter\",\n      \"lastName\": \"parker\",\n      \"email\": \"spiderman@gmail.com\",\n      \"phone\": \"98760004\",\n      \"userType\": \"D\",\n      \"registrationDate\": \"2022-05-23T11:42:07.891166\",\n      \"walletId\": \"0x12340004\"\n    },\n    {\n      \"id\": 5,\n      \"username\": \"drstrange\",\n      \"password\": \"$2a$10$5OX2.dLRF1lnt6nfcB8Aae2wRMjrgF750ao0V1QY5.sT7PNM4qYci\",\n      \"firstName\": \"stephen\",\n      \"lastName\": \"strange\",\n      \"email\": \"drstrange@gmail.com\",\n      \"phone\": \"98760005\",\n      \"userType\": \"A\",\n      \"registrationDate\": \"2022-05-23T11:42:07.891166\",\n      \"walletId\": \"0x12340005\"\n    }\n  ],\n  \"path\": \"/api/v1/profile/\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized request, no User authority"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "profile-controller"
+        ],
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "profile-controller"
+        ],
+        "summary": "Creates a new user profile",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProfile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User profile created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to create user profile due to unexpected condition",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "profile-controller"
+        ],
+        "operationId": "removeAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/authenticate": {
+      "post": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "Authenticates a user login and returns a ResponseMessage containing a jwt token",
+        "operationId": "authenticate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticationRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authentication success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                },
+                "examples": {
+                  "Returns a jwt token": {
+                    "description": "Returns a jwt token in the <b>data</b> field",
+                    "value": {
+                      "timestamp": "2022-05-21T17:42:10.9282709",
+                      "status": 200,
+                      "message": "",
+                      "data": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImJhdG1hbiIsInJvbGVzIjoiUyIsImlhdCI6MTY1MzEyNjEzMCwiZXhwIjoxNjUzMTI3MDMwfQ.DRlg1WxXGOEwtYrAJDcjOmpUjCcyCYLXixpbjStqd00",
+                      "path": "/api/v1/authenticate"
+                    },
+                    "externalValue": "http://localhost:8080/swagger/common-authenticate-200.json"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Authentication failed, incorrect username/password"
+          }
+        }
+      }
+    },
+    "/api/v1/attachment/upload": {
+      "post": {
+        "tags": [
+          "attachment-controller"
+        ],
+        "operationId": "upload",
+        "parameters": [
+          {
+            "name": "files",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/user": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "To test the User authority",
+        "operationId": "testUserAuthority",
+        "responses": {
+          "200": {
+            "description": "Request made with proper authority",
+            "content": {
+              "text/html": {
+                "example": "<h1>Hello, superman you have these authorities U</h1>"
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized request, no User authority"
+          }
+        }
+      }
+    },
+    "/api/v1/test/solution": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "To test the Solution Provider authority",
+        "operationId": "testSolutionProviderAuthority",
+        "responses": {
+          "200": {
+            "description": "Request made with Solution Provider authority",
+            "content": {
+              "text/html": {
+                "example": "<h1>Hello, batman you have these authorities S</h1>"
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized request, no Solution Provider authority"
+          }
+        }
+      }
+    },
+    "/api/v1/test/public": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "To test endpoint for public without authentication",
+        "operationId": "testPublic",
+        "responses": {
+          "200": {
+            "description": "Request made with proper authority",
+            "content": {
+              "text/html": {
+                "examples": {
+                  "Request made with valid jwt token": {
+                    "description": "Returns username and given authorities",
+                    "value": "<h1>Hello, drstrange you have these authorities A</h1>"
+                  },
+                  "Request made without valid jwt token": {
+                    "description": "States <b>unknown</b> user but endpoint is public",
+                    "value": "<h1>Hello, unknown user, this url is public to access</h1>"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/investor": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "To test the Investor authority",
+        "operationId": "testInvestorAuthority",
+        "responses": {
+          "200": {
+            "description": "Request made with proper authority",
+            "content": {
+              "text/html": {
+                "example": "<h1>Hello, ironman you have these authorities I</h1>"
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized request, no Investor authority"
+          }
+        }
+      }
+    },
+    "/api/v1/test/developer": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "To test the Developer authority",
+        "operationId": "testDeveloperAuthority",
+        "responses": {
+          "200": {
+            "description": "Request made with Developer authority",
+            "content": {
+              "text/html": {
+                "example": "<h1>Hello, spiderman you have these authorities D</h1>"
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized request, no Developer authority"
+          }
+        }
+      }
+    },
+    "/api/v1/test/admin": {
+      "get": {
+        "tags": [
+          "common-controller"
+        ],
+        "summary": "To test the Admin authority",
+        "operationId": "testAdminAuthority",
+        "responses": {
+          "200": {
+            "description": "Request made with proper authority",
+            "content": {
+              "text/html": {
+                "example": "<h1>Hello, drstrange you have these authorities A</h1>"
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized request, no Admin authority"
+          }
+        }
+      }
+    },
+    "/api/v1/profile/username/{username}": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "summary": "Retrieve user profile by username",
+        "operationId": "getByUserId",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/profile/ping": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "summary": "Ping test",
+        "operationId": "test",
+        "responses": {
+          "200": {
+            "description": "Returns standard ping test response",
+            "content": {
+              "application/json": {
+                "example": {
+                  "timestamp": "2022-05-23T11:34:15.1883792",
+                  "status": 200,
+                  "message": "ping pong",
+                  "data": null,
+                  "path": "/api/v1/profile/ping"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/profile/id/{id}": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "summary": "Retrieve user profile by id",
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "profile-controller"
+        ],
+        "operationId": "remove",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attachment/ping": {
+      "get": {
+        "tags": [
+          "attachment-controller"
+        ],
+        "operationId": "test_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attachment/id/{id}": {
+      "get": {
+        "tags": [
+          "attachment-controller"
+        ],
+        "operationId": "getById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attachment/docId/{documentId}": {
+      "get": {
+        "tags": [
+          "attachment-controller"
+        ],
+        "operationId": "getByDocumentId",
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attachment/": {
+      "get": {
+        "tags": [
+          "attachment-controller"
+        ],
+        "operationId": "getAll_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserProfile": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "password",
+          "registrationDate",
+          "userType",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "username": {
+            "maxLength": 12,
+            "minLength": 6,
+            "pattern": "[a-zA-Z0-9]+",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 80,
+            "minLength": 10,
+            "type": "string"
+          },
+          "firstName": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 30,
+            "minLength": 2,
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "maxLength": 15,
+            "minLength": 7,
+            "pattern": "[0-9]+",
+            "type": "string"
+          },
+          "userType": {
+            "maxLength": 1,
+            "minLength": 1,
+            "type": "string"
+          },
+          "registrationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "walletId": {
+            "maxLength": 100,
+            "minLength": 10,
+            "pattern": "[a-zA-Z0-9]+",
+            "type": "string"
+          }
+        }
+      },
+      "ResponseMessage": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "AuthenticationRequestBody": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

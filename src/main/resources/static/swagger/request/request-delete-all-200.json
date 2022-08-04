@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-12T21:42:53.697333",
+  "status": 200,
+  "message": "All requests deleted.",
+  "data": null,
+  "path": "/api/v1/request/",
+  "ok": true
+}

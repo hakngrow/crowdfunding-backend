@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-06T22:44:25.286177",
+  "status": 200,
+  "message": "Contract with id=2 deleted.",
+  "data": null,
+  "path": "/api/v1/contract/id/2",
+  "ok": true
+}

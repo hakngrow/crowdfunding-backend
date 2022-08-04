@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-07T11:54:34.2377228",
+  "status": 400,
+  "message": "ConstraintViolationException: create.funding.contractId: contractId must not be Null, create.funding.contractId: contractId must not be Null",
+  "data": null,
+  "path": "/api/v1/funding/",
+  "ok": false
+}

@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-05-23T21:58:01.7052518",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 6,
+    "username": "ghostrider",
+    "password": "$2a$10$teVciT./zgDyPQM4cTzFrOqAe7K5G46BHe7970Pzyzn/qgnMBKun6",
+    "firstName": "johnny",
+    "lastName": "blaze",
+    "email": "ghostrider@gmail.com",
+    "phone": "98760006",
+    "userType": "U",
+    "registrationDate": "2022-05-23T21:56:01.7593049",
+    "walletId": "0x12340006"
+  },
+  "path": "/api/v1/profile/"
+}

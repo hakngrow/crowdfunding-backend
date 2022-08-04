@@ -1,0 +1,92 @@
+{
+  "timestamp": "2022-07-14T11:16:26.3245756",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 3,
+      "fromProfileId": 1,
+      "toProfileId": 0,
+      "requestId": 2,
+      "title": "Single Patient Dialysis Machine TR-8000",
+      "type": "RFF",
+      "status": "FF",
+      "description": "The single patients dialysis machine can perform prescribed dialysis which adjust the dialysate conductivity in accordance with each patient. It mainly consists of Monitor/alarm part, Dialysate supply/UF control part, Extracorporeal blood circuit part, and Electrical control part.",
+      "cost": 1300000,
+      "repayment": 1500000,
+      "specifications": "Supported by the advanced technologies of TORAY, TR-8000 offers comfortable dialysis treatment to patients, easy operation to medical staff and contributes to medical development.\n\n- Easy operability by changing the position of external parts\n- The position of rinse ports, couplers and bicarbonate cartridge was changed and you can operate them without squat.\n- Casters became larger and you can move it by less power.\nImprovement of standard functions\n- The chamber level adjustment has been newly equipped as standard\n- Self-test time became shorter\nVarious new options and accessories\n- BVM, Kt/V indicator, Bicarbonate cartridge, etc.",
+      "createdTimestamp": "2022-07-14T02:54:51.172",
+      "fromProfile": {
+        "id": 1,
+        "username": "sbipcc",
+        "password": "$2a$10$FRa16Z2YWzTzd64xEP/mMOp6jd11ahM1o1DkpvcoSYUyJscsGroP6",
+        "firstName": "SBIP",
+        "lastName": "Community Clinic",
+        "email": "sbip-clinic@gmail.com",
+        "phone": "98760001",
+        "userType": "U",
+        "registrationDate": "2022-07-14T10:52:00.880122",
+        "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+      },
+      "toProfile": null,
+      "proposal": null,
+      "contract": {
+        "id": 1,
+        "requestId": 3,
+        "walletId": "GAyCywe7wYQ49XA92BrDBVvj2CMKeEGMmGjseQR3yFua",
+        "targetAmount": 1300000,
+        "repaymentAmount": 1500000,
+        "status": "FF",
+        "createdTimestamp": "2022-07-14T10:54:51.202164",
+        "fundings": [
+          {
+            "id": 1,
+            "contractId": 1,
+            "profileId": 5,
+            "status": "FIC",
+            "fundingAmount": 500000,
+            "repaymentAmount": 575000,
+            "disbursedAmount": 0,
+            "createdTimestamp": "2022-07-14T10:56:41.714931",
+            "profile": null
+          },
+          {
+            "id": 2,
+            "contractId": 1,
+            "profileId": 4,
+            "status": "FIC",
+            "fundingAmount": 800000,
+            "repaymentAmount": 920000,
+            "disbursedAmount": 0,
+            "createdTimestamp": "2022-07-14T10:58:38.186592",
+            "profile": null
+          }
+        ],
+        "yield": 15,
+        "raisedAmount": 1300000,
+        "outstandingAmount": 0
+      },
+      "fromUser": {
+        "id": 1,
+        "username": "sbipcc",
+        "password": "$2a$10$FRa16Z2YWzTzd64xEP/mMOp6jd11ahM1o1DkpvcoSYUyJscsGroP6",
+        "firstName": "SBIP",
+        "lastName": "Community Clinic",
+        "email": "sbip-clinic@gmail.com",
+        "phone": "98760001",
+        "userType": "U",
+        "registrationDate": "2022-07-14T10:52:00.880122",
+        "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+      },
+      "open": false,
+      "closed": false,
+      "rfp": false,
+      "pro": false,
+      "rff": true,
+      "rejected": false,
+      "accepted": false
+    }
+  ],
+  "path": "/api/v1/request/rff/from/1",
+  "ok": true
+}

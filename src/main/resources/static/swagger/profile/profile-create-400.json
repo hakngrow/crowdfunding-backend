@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-05-24T10:58:57.9240571",
+  "status": 400,
+  "message": "username must not be blank, username must not contain special characters, username must contain between 6 to 20 characters",
+  "data": null,
+  "path": "/api/v1/profile/"
+}

@@ -1,0 +1,67 @@
+{
+  "timestamp": "2022-07-07T15:54:46.4142207",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 1,
+      "requestId": 4,
+      "targetAmount": 1000000,
+      "status": "O",
+      "createdTimestamp": "2022-07-06T20:48:28.46218",
+      "fundings": [
+        {
+          "id": 1,
+          "contractId": 1,
+          "profileId": "30",
+          "status": "F",
+          "fundingAmount": 9999,
+          "disbursedAmount": 1000,
+          "createdTimestamp": "2022-07-07T11:37:19.328878",
+          "profile": null
+        },
+        {
+          "id": 2,
+          "contractId": 1,
+          "profileId": "32",
+          "status": "F",
+          "fundingAmount": 9999,
+          "disbursedAmount": 1000,
+          "createdTimestamp": "2022-07-07T11:37:19.328878",
+          "profile": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "requestId": 5,
+      "targetAmount": 1000000,
+      "status": "O",
+      "createdTimestamp": "2022-07-06T20:48:28.46218",
+      "fundings": [
+        {
+          "id": 3,
+          "contractId": 3,
+          "profileId": "56",
+          "status": "F",
+          "fundingAmount": 9999,
+          "disbursedAmount": 1000,
+          "createdTimestamp": "2022-07-07T11:37:19.328878",
+          "profile": null
+        },
+        {
+          "id": 4,
+          "contractId": 3,
+          "profileId": "59",
+          "status": "F",
+          "fundingAmount": 9999,
+          "disbursedAmount": 1000,
+          "createdTimestamp": "2022-07-07T11:37:19.328878",
+          "profile": null
+        }
+      ]
+    }
+  ],
+  "path": "/api/v1/contract/",
+  "ok": true
+}

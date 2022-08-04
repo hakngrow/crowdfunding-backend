@@ -1,0 +1,68 @@
+{
+  "timestamp": "2022-05-23T12:02:41.9514056",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 1,
+      "username": "superman",
+      "password": "$2a$10$x.mpVCxlINrOXQlxejrsUeEf4cdZFIim1tt9Ewl4./6esw0dMctIe",
+      "firstName": "clark",
+      "lastName": "kent",
+      "email": "superman@gmail.com",
+      "phone": "98760001",
+      "userType": "U",
+      "registrationDate": "2022-05-23T11:42:07.891166",
+      "walletId": "0x12340001"
+    },
+    {
+      "id": 2,
+      "username": "batman",
+      "password": "$2a$10$905pmsxf0ewjnCsMkVVJq..bZrxqmwcSIqp24cVdK4kgzSrjbVhi2",
+      "firstName": "bruce",
+      "lastName": "wane",
+      "email": "batman@gmail.com",
+      "phone": "98760002",
+      "userType": "S",
+      "registrationDate": "2022-05-23T11:42:07.891166",
+      "walletId": "0x12340002"
+    },
+    {
+      "id": 3,
+      "username": "ironman",
+      "password": "$2a$10$okbGBYzX61ZyvTtQhEU8ue3ht1HBjn51HdCBdhbccgGKklYYk8fxG",
+      "firstName": "tony",
+      "lastName": "starks",
+      "email": "ironman@gmail.com",
+      "phone": "98760003",
+      "userType": "I",
+      "registrationDate": "2022-05-23T11:42:07.891166",
+      "walletId": "0x12340003"
+    },
+    {
+      "id": 4,
+      "username": "spiderman",
+      "password": "$2a$10$C3p80vNZC.vuZtyUmR5wRertmoB4KxOpElWvTEjLABPvBXEv/03/.",
+      "firstName": "peter",
+      "lastName": "parker",
+      "email": "spiderman@gmail.com",
+      "phone": "98760004",
+      "userType": "D",
+      "registrationDate": "2022-05-23T11:42:07.891166",
+      "walletId": "0x12340004"
+    },
+    {
+      "id": 5,
+      "username": "drstrange",
+      "password": "$2a$10$5OX2.dLRF1lnt6nfcB8Aae2wRMjrgF750ao0V1QY5.sT7PNM4qYci",
+      "firstName": "stephen",
+      "lastName": "strange",
+      "email": "drstrange@gmail.com",
+      "phone": "98760005",
+      "userType": "A",
+      "registrationDate": "2022-05-23T11:42:07.891166",
+      "walletId": "0x12340005"
+    }
+  ],
+  "path": "/api/v1/profile/"
+}

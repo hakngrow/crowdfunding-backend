@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-06-05T18:46:10.9470282",
+  "status": 200,
+  "message": "Transaction with id=10 deleted.",
+  "data": {
+    "id": 10,
+    "receiverWalletId": "thorwallet",
+    "senderWalletId": "ironmanWallet",
+    "receiverAmount": 22,
+    "senderAmount": 222,
+    "receiverBalance": 2222,
+    "senderBalance": 22222,
+    "createdTimestamp": "2022-06-03T15:31:49.142644",
+    "property": 2,
+    "hash": "2222"
+  },
+  "path": "/api/v1/transaction/id/10"
+}

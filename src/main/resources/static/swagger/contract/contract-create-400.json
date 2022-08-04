@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-06T20:56:48.2076296",
+  "status": 400,
+  "message": "ConstraintViolationException: create.contract.requestId: requestId must not be Null, create.contract.requestId: requestId must not be Null",
+  "data": null,
+  "path": "/api/v1/contract/",
+  "ok": false
+}

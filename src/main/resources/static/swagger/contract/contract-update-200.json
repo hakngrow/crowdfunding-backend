@@ -1,0 +1,17 @@
+{
+  "timestamp": "2022-07-10T13:07:25.513882",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "requestId": 1,
+    "walletId": "GAyCywe7wYQ49XA92BrDBVvj2CMKeEGMmGjseQR3yFua",
+    "targetAmount": 1000000,
+    "repaymentAmount": 1500000,
+    "status": "FF",
+    "createdTimestamp": "2022-07-06T20:48:28.4621798",
+    "fundings": null
+  },
+  "path": "/api/v1/contract/",
+  "ok": true
+}

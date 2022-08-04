@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-07T12:04:32.1067538",
+  "status": 404,
+  "message": "EntityNotFoundException: Funding with id=99 NOT found.",
+  "data": null,
+  "path": "/api/v1/funding/",
+  "ok": false
+}

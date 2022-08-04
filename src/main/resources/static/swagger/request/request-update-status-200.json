@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-15T11:51:59.3763999",
+  "status": 200,
+  "message": "Request with id=1, status=C updated",
+  "data": null,
+  "path": "/api/v1/request/id/1/status/C",
+  "ok": true
+}

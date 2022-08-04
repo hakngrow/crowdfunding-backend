@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-06-05T17:55:55.7432463",
+  "status": 404,
+  "message": "Transaction with id=7 NOT found.",
+  "data": null,
+  "path": "/api/v1/transaction/id/7"
+}

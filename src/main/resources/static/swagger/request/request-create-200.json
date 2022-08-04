@@ -1,0 +1,30 @@
+{
+  "timestamp": "2022-08-02T11:36:25.6632435",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "fromProfileId": 1,
+    "toProfileId": 2,
+    "requestId": 1,
+    "title": "TX2touch-90 POWER cobot",
+    "type": "RFP",
+    "status": "O",
+    "description": "TX2touch is the only cobot with the SIL3/PLe safety level. It is highly productive due to the performance, smart connectivity and reliability inherited from TX2 robots and its CS9 controller.",
+    "cost": 1000000,
+    "repayment": null,
+    "specifications": "The TX2touch-90 series has a payload of up to 10 kg with a maximum reach of 1450 mm.",
+    "createdTimestamp": "2022-05-30T16:51:43.9296215",
+    "fromProfile": null,
+    "toProfile": null,
+    "open": true,
+    "accepted": false,
+    "rfp": true,
+    "rff": false,
+    "closed": false,
+    "rejected": false,
+    "pro": false
+  },
+  "path": "/api/v1/request/",
+  "ok": true
+}

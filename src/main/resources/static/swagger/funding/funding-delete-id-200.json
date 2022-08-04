@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-07T12:21:23.32848",
+  "status": 200,
+  "message": "Funding with id=2 deleted.",
+  "data": null,
+  "path": "/api/v1/funding/id/2",
+  "ok": true
+}

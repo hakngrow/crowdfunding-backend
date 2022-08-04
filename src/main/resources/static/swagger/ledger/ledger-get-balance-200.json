@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-08T17:50:38.2014849",
+  "status": 200,
+  "message": "",
+  "data": 1000000000,
+  "path": "/api/v1/ledger/balance/4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se",
+  "ok": true
+}

@@ -1,0 +1,79 @@
+{
+  "timestamp": "2022-07-05T15:23:54.8216974",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 3,
+      "fromProfileId": 2,
+      "toProfileId": 1,
+      "requestId": 1,
+      "title": "TX2touch-90 POWER Cobot",
+      "type": "PRO",
+      "status": "O",
+      "description": "TX2touch is the only cobot with the SIL3/PLe safety level. It is highly productive due to the performance, smart connectivity and reliability inherited from TX2 robots and its CS9 controller.",
+      "cost": 3000000,
+      "repayment": null,
+      "specifications": "The TX2touch-90 series has a payload of up to 10 kg with a maximum reach of 1450 mm.",
+      "createdTimestamp": "2022-07-05T15:21:23.255662",
+      "fromProfile": {
+        "id": 2,
+        "username": "batman",
+        "password": "$2a$10$6BHgYUJzzcwkWppj17kEi.ZR1dbks.w81h2jHOE/jdRwpRuDmpU6G",
+        "firstName": "bruce",
+        "lastName": "wane",
+        "email": "batman@gmail.com",
+        "phone": "98760002",
+        "userType": "S",
+        "registrationDate": "2022-07-05T15:21:22.733913",
+        "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+      },
+      "toProfile": {
+        "id": 1,
+        "username": "superman",
+        "password": "$2a$10$whpUZ9K4HfxDeeLLKVY0NurFoL/oEFpb8IR99wQjA7LQC1W9sZkiK",
+        "firstName": "clark",
+        "lastName": "kent",
+        "email": "superman@gmail.com",
+        "phone": "98760001",
+        "userType": "U",
+        "registrationDate": "2022-07-05T15:21:22.733913",
+        "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+      },
+      "provider": {
+        "id": 2,
+        "username": "batman",
+        "password": "$2a$10$6BHgYUJzzcwkWppj17kEi.ZR1dbks.w81h2jHOE/jdRwpRuDmpU6G",
+        "firstName": "bruce",
+        "lastName": "wane",
+        "email": "batman@gmail.com",
+        "phone": "98760002",
+        "userType": "S",
+        "registrationDate": "2022-07-05T15:21:22.733913",
+        "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+      },
+      "user": {
+        "id": 1,
+        "username": "superman",
+        "password": "$2a$10$whpUZ9K4HfxDeeLLKVY0NurFoL/oEFpb8IR99wQjA7LQC1W9sZkiK",
+        "firstName": "clark",
+        "lastName": "kent",
+        "email": "superman@gmail.com",
+        "phone": "98760001",
+        "userType": "U",
+        "registrationDate": "2022-07-05T15:21:22.733913",
+        "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+      },
+      "open": true,
+      "accepted": false,
+      "closed": false,
+      "rff": false,
+      "approved": false,
+      "pro": true,
+      "rfp": false,
+      "rejected": false
+    }
+  ],
+  "path": "/api/v1/request/pro/from/2",
+  "ok": true
+}

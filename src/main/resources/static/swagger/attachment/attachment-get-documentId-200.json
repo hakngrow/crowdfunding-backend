@@ -1,0 +1,20 @@
+{
+  "timestamp": "2022-05-25T15:10:49.3728642",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "name": "attachment-ping-200.json",
+      "url": "http://localhost:8080/api/v1/attachment/id/6",
+      "type": "application/json",
+      "size": 122
+    },
+    {
+      "name": "attachment-upload-200.json",
+      "url": "http://localhost:8080/api/v1/attachment/id/7",
+      "type": "application/json",
+      "size": 1034
+    }
+  ],
+  "path": "/api/v1/attachment/docId/88"
+}

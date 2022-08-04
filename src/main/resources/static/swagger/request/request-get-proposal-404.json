@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-05T13:49:38.3116253",
+  "status": 404,
+  "message": "EntityNotFoundException: Request with id=99 NOT found.",
+  "data": null,
+  "path": "/api/v1/request/pro/id/99",
+  "ok": false
+}

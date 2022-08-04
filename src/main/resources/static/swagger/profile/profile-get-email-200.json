@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-06-07T23:37:55.8294275",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 2,
+    "username": "batman",
+    "password": "$2a$10$rjftpvz/R2KAoIY6V2ryc.LrjI6GXc5buLgW2dAPvFGwkQf8gnSAy",
+    "firstName": "bruce",
+    "lastName": "wane",
+    "email": "batman@gmail.com",
+    "phone": "98760002",
+    "userType": "S",
+    "registrationDate": "2022-06-07T23:33:45.074602",
+    "walletId": "4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se"
+  },
+  "path": "/api/v1/profile/email/batman@gmail.com"
+}

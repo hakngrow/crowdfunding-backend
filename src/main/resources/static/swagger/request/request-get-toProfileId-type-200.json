@@ -1,0 +1,37 @@
+{
+  "timestamp": "2022-06-15T15:13:53.5366634",
+  "status": 200,
+  "message": "",
+  "data": [
+    {
+      "id": 2,
+      "fromProfileId": 1,
+      "toProfileId": 2,
+      "requestId": null,
+      "title": "Epson VT6L All-in-One 6-Axis Robot",
+      "type": "RFA",
+      "status": "C",
+      "description": "Features Slimline design perfect for factories with limited floor space and compact wrist pitch that enables robot easy access to hard-to-reach areas. Ideal for load/ unload, packaging or parts assembly applications. Cleanroom (ISO4) and Protected (IP67) models available.",
+      "cost": 2000000,
+      "repayment": 25000000,
+      "specifications": "VT6L offers a reach up to 900 mm and a payload up to 6 kg. A feature-packed performer, it includes a built-in controller, plus simplified cabling with a hollow end-of-arm design – all at a remarkably low cost, in a compact, SlimLine structure. The VT6L offers 110 V and 220 V power and installs in minutes.",
+      "createdTimestamp": "2022-06-15T15:12:27.377656"
+    },
+    {
+      "id": 3,
+      "fromProfileId": 8,
+      "toProfileId": 2,
+      "requestId": 1,
+      "title": "TX2touch-90 POWER cobot",
+      "type": "RFA",
+      "status": "O",
+      "description": "TX2touch is the only cobot with the SIL3/PLe safety level. It is highly productive due to the performance, smart connectivity and reliability inherited from TX2 robots and its CS9 controller.",
+      "cost": 3000000,
+      "repayment": 31000000,
+      "specifications": "The TX2touch-90 series has a payload of up to 10 kg with a maximum reach of 1450 mm.",
+      "createdTimestamp": "2022-06-15T15:12:27.377656"
+    }
+  ],
+  "path": "/api/v1/request/toProfileId/2/type/RFA",
+  "ok": true
+}

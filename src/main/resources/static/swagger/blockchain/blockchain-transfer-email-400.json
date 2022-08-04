@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-06-08T09:54:00.8313232",
+  "status": 400,
+  "message": "Required request parameter 'email' for method parameter type String is not present",
+  "data": null,
+  "path": "/api/v1/blockchain/transfer/email"
+}

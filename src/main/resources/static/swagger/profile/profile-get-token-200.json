@@ -1,0 +1,18 @@
+{
+  "timestamp": "2022-06-02T12:04:26.1662345",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 5,
+    "username": "drstrange",
+    "password": "$2a$10$2zUA9WTsH0bN9VY5lZ7aUObxoYXgZ.QNF0X07KRIq1cK3aKxzTBii",
+    "firstName": "stephen",
+    "lastName": "strange",
+    "email": "drstrange@gmail.com",
+    "phone": "98760005",
+    "userType": "A",
+    "registrationDate": "2022-06-02T12:04:16.351208",
+    "walletId": "0x12340005"
+  },
+  "path": "/api/v1/profile/token"
+}

@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-05T14:32:53.0301872",
+  "status": 404,
+  "message": "EntityNotFoundException: Request with id=99 NOT found.",
+  "data": null,
+  "path": "/api/v1/request/rfp/id/99",
+  "ok": false
+}

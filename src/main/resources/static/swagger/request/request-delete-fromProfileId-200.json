@@ -1,0 +1,22 @@
+{
+  "timestamp": "2022-06-14T14:34:12.5449562",
+  "status": 200,
+  "message": "Requests from profile id=1 deleted.",
+  "data": [
+    {
+      "id": 2,
+      "fromProfileId": 1,
+      "toProfileId": 2,
+      "requestId": null,
+      "title": "Epson VT6L All-in-One 6-Axis Robot",
+      "type": "RFA",
+      "status": "C",
+      "description": "Features Slimline design perfect for factories with limited floor space and compact wrist pitch that enables robot easy access to hard-to-reach areas. Ideal for load/ unload, packaging or parts assembly applications. Cleanroom (ISO4) and Protected (IP67) models available.",
+      "cost": 2000000,
+      "specifications": "VT6L offers a reach up to 900 mm and a payload up to 6 kg. A feature-packed performer, it includes a built-in controller, plus simplified cabling with a hollow end-of-arm design – all at a remarkably low cost, in a compact, SlimLine structure. The VT6L offers 110 V and 220 V power and installs in minutes.",
+      "createdTimestamp": "2022-06-14T11:51:14.458968"
+    }
+  ],
+  "path": "/api/v1/request/fromProfileId/1",
+  "ok": true
+}

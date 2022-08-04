@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-05-25T03:28:11.655+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "exception": "org.springframework.web.multipart.MaxUploadSizeExceededException",
+  "message": "Maximum upload size exceeded; nested exception is java.lang.IllegalStateException: org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException: the request was rejected because its size (28488710) exceeds the configured maximum (10485760)",
+  "path": "/api/v1/attachment/upload"
+}

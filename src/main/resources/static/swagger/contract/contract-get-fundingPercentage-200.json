@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-10T15:02:55.4218576",
+  "status": 200,
+  "message": "",
+  "data": 50,
+  "path": "/api/v1/contract/fundingPercentage/id/1/amount/500000",
+  "ok": true
+}

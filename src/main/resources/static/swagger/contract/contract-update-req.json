@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "requestId": 1,
+  "walletId": "GAyCywe7wYQ49XA92BrDBVvj2CMKeEGMmGjseQR3yFua",
+  "targetAmount": 1000000,
+  "repaymentAmount": 1500000,
+  "status": "FF",
+  "createdTimestamp": "2022-07-06T20:48:28.4621798"
+}

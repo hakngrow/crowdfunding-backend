@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-08T18:17:35.199669",
+  "status": 400,
+  "message": "InvalidBalanceException: Invalid balance @ wallet address qJJZvUgCRtJMNHqq91EcoStYw8NhWyszrtWRVLhVmw",
+  "data": null,
+  "path": "/api/v1/ledger/transfer",
+  "ok": false
+}

@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-05-24T11:26:00.8833737",
+  "status": 500,
+  "message": "could not execute statement; SQL [n/a]; constraint [user_profiles.UK_dqltqkaw58m11jbov0udx8xqg]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement",
+  "data": null,
+  "path": "/api/v1/profile/"
+}

@@ -1,0 +1,13 @@
+{
+  "timestamp": "2022-06-06T21:39:40.1454592",
+  "status": 200,
+  "message": "",
+  "data": {
+    "address": "5tjN3DGqz5eYjNPipT2Vv9U2gRgqdjo62DE1QjxbC5DK",
+    "symbol": "SOL",
+    "txHash": "2SPTFsUGRyorm4cD5q6EdpGnc9JFcgxQLEinT7NUEG93qpnfk1zsWzujbAvt8WqaFzv7SDtEL62UpAdu8S354tvU",
+    "depositAmount": 7000,
+    "units": "lamport"
+  },
+  "path": "/api/v1/blockchain/deposit"
+}

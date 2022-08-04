@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-05-23T16:14:19.5132308",
+  "status": 404,
+  "message": "User profile with id=33 NOT found.",
+  "data": null,
+  "path": "/api/v1/profile/id/33"
+}

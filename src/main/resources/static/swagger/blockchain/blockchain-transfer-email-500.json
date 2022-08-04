@@ -1,0 +1,7 @@
+{
+  "timestamp": "2022-06-08T10:08:14.7150792",
+  "status": 500,
+  "message": "org.springframework.web.client.ResourceAccessException: I/O error on GET request for \"http://172.28.176.166:8080/api/v1/sol/transfer\": No route to host: connect; nested exception is java.net.NoRouteToHostException: No route to host: connect",
+  "data": null,
+  "path": "/api/v1/blockchain/transfer/email"
+}

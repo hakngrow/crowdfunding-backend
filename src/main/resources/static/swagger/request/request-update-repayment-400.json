@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-15T12:23:36.2521651",
+  "status": 400,
+  "message": "javax.validation.ConstraintViolationException: updateRepayment.repayment: must be greater than 0",
+  "data": null,
+  "path": "/api/v1/request/id/99/repayment/-99",
+  "ok": false
+}

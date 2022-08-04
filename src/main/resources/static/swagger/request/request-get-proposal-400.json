@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-05T13:45:36.6005978",
+  "status": 400,
+  "message": "InvalidRequestTypeException: Unable to process request of type=RFP",
+  "data": null,
+  "path": "/api/v1/request/pro/id/1",
+  "ok": false
+}

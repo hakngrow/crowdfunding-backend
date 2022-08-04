@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-07-12T23:56:40.4659262",
+  "status": 404,
+  "message": "EntityNotFoundException: Contract with id=99 NOT found.",
+  "data": null,
+  "path": "/api/v1/contract/fund/99",
+  "ok": false
+}

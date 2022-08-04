@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-12T21:37:54.89466",
+  "status": 404,
+  "message": "No requests with profile id=99 found.",
+  "data": null,
+  "path": "/api/v1/request/profileId/99",
+  "ok": false
+}

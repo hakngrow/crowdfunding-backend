@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-11T18:13:37.7594407",
+  "status": 200,
+  "message": "All products deleted.",
+  "data": null,
+  "path": "/api/v1/product/",
+  "ok": true
+}

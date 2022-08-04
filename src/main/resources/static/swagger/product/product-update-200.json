@@ -1,0 +1,17 @@
+{
+  "timestamp": "2022-06-11T17:43:39.5230145",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "profileId": 2,
+    "name": "Epson T3-B All-in-One SCARA Robot",
+    "type": "SCARA",
+    "description": "The ideal alternative to slide-based solutions, All-in-One design includes power for end-of-arm tooling, 4 built-in axes in one compact design. Perfect for pick and place, simple assembly, material handing and dispensing.",
+    "price": 1800000,
+    "specifications": "Designed to seamlessly fit in a variety of workspaces, this all-in-one solution features a built-in controller, power for end-of-arm tooling and 110 V or 220 V power—virtually eliminating any space-constraint issues. Plus, it offers a 400 mm reach and a payload of up to 3 kg to easily handle a variety of tasks.",
+    "createdTimestamp": "2022-06-10T21:19:12.2533473"
+  },
+  "path": "/api/v1/product/",
+  "ok": true
+}

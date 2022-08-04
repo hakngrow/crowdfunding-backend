@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-06-11T16:47:29.5164184",
+  "status": 404,
+  "message": "Product with id=6 NOT found.",
+  "data": null,
+  "path": "/api/v1/product/id/6",
+  "ok": false
+}

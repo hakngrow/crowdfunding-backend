@@ -1,12 +1,9 @@
 package com.aestus.api.request.service;
 
-import com.aestus.api.request.model.Proposal;
+import com.aestus.api.request.model.*;
 import com.aestus.api.common.exception.EntityNotFoundException;
 import com.aestus.api.request.exception.InvalidRequestTypeException;
 import com.aestus.api.request.exception.RequestException;
-import com.aestus.api.request.model.Request;
-import com.aestus.api.request.model.RequestForFunding;
-import com.aestus.api.request.model.RequestForProposal;
 
 import java.util.List;
 
@@ -163,19 +160,47 @@ public interface RequestService {
    * @param id the proposal id
    * @return the proposal if found
    * @throws InvalidRequestTypeException the type is not a proposal
-   * @throws EntityNotFoundException the request for proposal with {@code id} is not found exception
+   * @throws EntityNotFoundException the proposal with {@code id} is not found exception
    */
   Proposal getProposal(int id) throws InvalidRequestTypeException, EntityNotFoundException;
 
   /**
-   * Gets the request for fundings from the proposals of provider {@code providerId} which has requested for funds.
+   * Gets a proposal by id.
+   *
+   * @param id the request for payment id
+   * @return the request for payment if found
+   * @throws InvalidRequestTypeException the type is not a request for payment
+   * @throws EntityNotFoundException the request for payment with {@code id} is not found exception
+   */
+  RequestForPayment getRequestForPayment(int id)
+      throws InvalidRequestTypeException, EntityNotFoundException;
+
+  /**
+   * Gets the request for fundings from the proposals of provider {@code providerId} which has
+   * requested for funds.
    *
    * @param providerId the solution provider id
-   * @return the request for funding if
+   * @return the request for fundings
    * @throws InvalidRequestTypeException the type is not a request for funding
    */
   Iterable<RequestForFunding> getRequestForFundingsFor(int providerId)
       throws InvalidRequestTypeException;
+
+  /**
+   * Gets request for payments by {@code fromProfileId}.
+   *
+   * @param fromProfileId the from profile id
+   * @return the list of request for payments
+   */
+  Iterable<RequestForPayment> getRequestForPaymentsFrom(int fromProfileId);
+
+  /**
+   * Gets request for payments by {@code toProfileId}.
+   *
+   * @param toProfileId the to profile id
+   * @return the list of request for payments
+   */
+  Iterable<RequestForPayment> getRequestForPaymentsTo(int toProfileId);
 
   /**
    * Creates a request.

@@ -1,5 +1,6 @@
 package com.aestus.api.blockchain.controller;
 
+import com.aestus.api.blockchain.exception.InvalidHttpMethodException;
 import com.aestus.api.blockchain.model.Balance;
 import com.aestus.api.blockchain.model.Deposit;
 import com.aestus.api.blockchain.model.Quote;
@@ -11,10 +12,10 @@ import com.aestus.api.blockchain.model.swagger.ResponseMessageWithTransfer;
 import com.aestus.api.common.model.ResponseMessage;
 import com.aestus.api.common.util.JWTUtils;
 import com.aestus.api.profile.model.UserProfile;
-
 import com.aestus.api.profile.model.swagger.ResponseMessageWithUserProfile;
 import com.aestus.api.transaction.model.Transaction;
 import com.aestus.api.transaction.model.swagger.ResponseMessageWithTransaction;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -56,11 +57,19 @@ public class BlockchainController {
   /** The jwt utilities. */
   @Autowired JWTUtils jwtUtils;
 
+  @Value("${com.aestus.solana.base.server}")
+  private final String bcServer = null;
+
+  @Value("${com.aestus.solana.base.port}")
+  private final String bcPort = null;
+
+  @Value("${com.aestus.solana.base.url}")
+  private final String bcUrlBase = null;
+
+  private String urlBlockchainBase;
+
   @Value("${com.aestus.solana.deposit.url}")
   private final String urlDeposit = null;
-
-  @Value("${com.aestus.solana.rate.url}")
-  private final String urlRate = null;
 
   @Value("${com.aestus.solana.transfer.url}")
   private final String urlTransfer = null;
@@ -70,6 +79,21 @@ public class BlockchainController {
 
   @Value("${com.aestus.solana.wallet.balance.url}")
   private final String urlWalletBalance = null;
+
+  @Value("${com.aestus.solana.nft.get.url}")
+  private final String urlNFTGet = null;
+
+  @Value("${com.aestus.solana.nft.get.all.url}")
+  private final String urlNFTGetAll = null;
+
+  @Value("${com.aestus.solana.nft.get.owner.url}")
+  private final String urlNFTGetOwner = null;
+
+  @Value("${com.aestus.solana.nft.create.url}")
+  private final String urlNFTCreate = null;
+
+  @Value("${com.aestus.coinapi.rate.url}")
+  private final String urlRate = null;
 
   @Value("${com.aestus.base.url}")
   private final String urlBase = null;
@@ -82,6 +106,16 @@ public class BlockchainController {
 
   @Value("${com.aestus.transaction.create.url}")
   private final String urlTransactionCreate = null;
+
+  public BlockchainController() {}
+
+  protected String getUrlBlockchainBase() {
+    if (urlBlockchainBase == null) urlBlockchainBase = String.format(bcUrlBase, bcServer, bcPort);
+
+    log.info("### " + urlBlockchainBase);
+
+    return urlBlockchainBase;
+  }
 
   /**
    * Pinging the controller.
@@ -173,12 +207,17 @@ public class BlockchainController {
     String uri = request.getRequestURI();
     String url = String.format(urlRate, baseAsset.toUpperCase(), quoteAsset.toUpperCase());
 
+    HttpHeaders headers = new HttpHeaders();
+    headers.set("X-CoinAPI-Key", "89A2E66F-C49F-4334-8F3F-09594BAFDE2D");
+
+    HttpEntity<String> entity = new HttpEntity<String>(headers);
+
     Quote quote;
     ResponseMessage msg;
 
     try {
       // Retrieve exchange rate from blockchain api
-      String strQuote = restTemplate.getForObject(url, String.class);
+      String strQuote = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
 
       // Configure the object mapper date format to prevent timestamps being converted to arrays
       ObjectMapper mapper = new ObjectMapper();
@@ -237,7 +276,9 @@ public class BlockchainController {
     ResponseMessage msg;
 
     Object address =
-        restTemplate.getForObject(urlWalletAddress, String.class).replaceAll("[^a-zA-Z0-9]", "");
+        restTemplate
+            .getForObject(getUrlBlockchainBase() + urlWalletAddress, String.class)
+            .replaceAll("[^a-zA-Z0-9]", "");
 
     msg = new ResponseMessage(HttpStatus.OK.value(), address, uri);
     return ResponseEntity.ok(msg);
@@ -311,7 +352,7 @@ public class BlockchainController {
       HttpServletRequest request) {
 
     String uri = request.getRequestURI();
-    String url = String.format(urlWalletBalance, walletId);
+    String url = getUrlBlockchainBase() + String.format(urlWalletBalance, walletId);
     ResponseMessage msg;
 
     Balance balance = restTemplate.getForObject(url, Balance.class);
@@ -514,7 +555,7 @@ public class BlockchainController {
     }
 
     // Perform airdrop using blockchain api
-    String url = String.format(urlDeposit, walletId, amount);
+    String url = getUrlBlockchainBase() + String.format(urlDeposit, walletId, amount);
     Deposit resDeposit = restTemplate.getForObject(url, Deposit.class);
 
     if (resDeposit.isOk()) {
@@ -568,12 +609,13 @@ public class BlockchainController {
     try {
       String jsonTransaction = objectMapper.writeValueAsString(transaction);
 
-      String url = urlBase + String.format(urlTransactionCreate, type, fromWalletId, toWalletId, amount);
+      String url =
+          urlBase + String.format(urlTransactionCreate, type, fromWalletId, toWalletId, amount);
 
       // Duplicate authorization headers from request
       HttpEntity entity = new HttpEntity<String>(jsonTransaction, getHttpHeaders(request));
 
-      // Create
+      // Create transaction
       ResponseEntity<ResponseMessageWithTransaction> response =
           restTemplate.exchange(url, HttpMethod.POST, entity, ResponseMessageWithTransaction.class);
 
@@ -702,7 +744,7 @@ public class BlockchainController {
       } else return ResponseEntity.internalServerError().body(msg);
     }
 
-    String url = String.format(urlTransfer, fromWalletId, toWalletId, amount);
+    String url = getUrlBlockchainBase() + String.format(urlTransfer, fromWalletId, toWalletId, amount);
 
     Transfer resTransfer = restTemplate.getForObject(url, Transfer.class);
 
@@ -839,5 +881,229 @@ public class BlockchainController {
     } else return ResponseEntity.internalServerError().body(msg);
 
     return transfer(fromWalletId, toWalletId, amount, request);
+  }
+
+  /**
+   * Retrieves the JSON metadata of a NFT at the specified {@code address}.
+   *
+   * @param address the mint address of the NFT
+   * @param request the http request
+   * @return the JSON metadata of the NFT embedded in a {@code ResponseMessage} instance
+   */
+  @GetMapping("/nft/address/{address}")
+  @PreAuthorize("hasAuthority('S') or hasAuthority('I') or hasAuthority('A')")
+  @Operation(
+      summary = "Retrieves the JSON metadata of the NFT at the specified address",
+      tags = {"Blockchain"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns a JSON metadata of the NFT in the <code>data</code> field",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-get-200.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Unable to retrieve NFT due to validation reasons.",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-get-400.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Unauthorized request",
+            content = @Content),
+        @ApiResponse(
+            responseCode = "500",
+            description =
+                "Unable to retrieve NFT due to unexpected conditions e.g. invalid address",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-get-500.json",
+                            value = ""))),
+      })
+  public ResponseEntity<ResponseMessage> getNFT(
+      @PathVariable @NotBlank(message = "address must not be blank") String address,
+      HttpServletRequest request)
+      throws InvalidHttpMethodException {
+
+    String url = getUrlBlockchainBase() + String.format(urlNFTGet, address);
+
+    return callAPI(url, HttpMethod.GET, request);
+  }
+
+  public ResponseEntity<ResponseMessage> getNFTsOwnedBy(
+      @PathVariable @NotBlank(message = "owner must not be blank") String owner,
+      HttpServletRequest request)
+      throws InvalidHttpMethodException {
+
+    String url = getUrlBlockchainBase() + String.format(urlNFTGetOwner, owner);
+
+    return callAPI(url, HttpMethod.GET, request);
+  }
+
+  /**
+   * Retrieves the JSON metadata of all NFTs.
+   *
+   * @param request the http request
+   * @return the JSON metadata of all NFTs embedded in a {@code ResponseMessage} instance
+   */
+  @GetMapping("/nft/")
+  @PreAuthorize("hasAuthority('S') or hasAuthority('I') or hasAuthority('A')")
+  @Operation(
+      summary = "Retrieves the JSON metadata of all NFTs",
+      tags = {"Blockchain"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns the JSON metadata of all NFTs in the <code>data</code> field",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-get-all-200.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Unable to retrieve NFT metadata due to validation reasons.",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-get-all-400.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Unauthorized request",
+            content = @Content),
+        @ApiResponse(
+            responseCode = "500",
+            description =
+                "Unable to retrieve NFT metadata due to unexpected conditions e.g. invalid address",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-get-all-500.json",
+                            value = ""))),
+      })
+  public ResponseEntity<ResponseMessage> getAllNFTs(HttpServletRequest request)
+      throws InvalidHttpMethodException {
+
+    return callAPI(getUrlBlockchainBase() + urlNFTGetAll, HttpMethod.GET, request);
+  }
+
+  /**
+   * Creates a NFT on the blockchain
+   *
+   * @param name the name of the NFT
+   * @param description the description of the NFT
+   * @param request the http request
+   * @return the response from the blockchain
+   */
+  @PostMapping("/nft/")
+  @PreAuthorize("hasAuthority('S') or hasAuthority('I') or hasAuthority('A')")
+  @Operation(
+      summary = "Create a NFT on the blockchain",
+      tags = {"Blockchain"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns the response from the blockchain",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-create-200.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Unable to create NFT due to validation reasons.",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-create-400.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Unauthorized request",
+            content = @Content),
+        @ApiResponse(
+            responseCode = "500",
+            description = "Unable to create NFT due to unexpected conditions e.g. blank name",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/blockchain/blockchain-nft-create-500.json",
+                            value = ""))),
+      })
+  public ResponseEntity<ResponseMessage> createNFT(
+      @RequestParam @NotBlank(message = "name must not be blank") String name,
+      @RequestParam @NotBlank(message = "description must not be blank") String description,
+      HttpServletRequest request)
+      throws InvalidHttpMethodException {
+
+    String url = getUrlBlockchainBase() + String.format(urlNFTCreate, name, description);
+
+    return callAPI(url, HttpMethod.POST, request);
+  }
+
+  /**
+   * Make a REST API call to the blockchain
+   *
+   * @param url the blockchain API endpoint
+   * @param method the HTTP method to use in the API call
+   * @param request the http request
+   * @return the response message with the embedded {@code Transaction} object
+   */
+  public ResponseEntity<ResponseMessage> callAPI(
+      String url, HttpMethod method, HttpServletRequest request) throws InvalidHttpMethodException {
+    String uri = request.getRequestURI();
+
+    Object response;
+    if (method.matches(HttpMethod.GET.name()))
+      response = restTemplate.getForObject(url, String.class);
+    else if (method.matches(HttpMethod.POST.name()))
+      response = restTemplate.postForObject(url, null, String.class);
+    else throw new InvalidHttpMethodException(method);
+
+    ResponseMessage msg = new ResponseMessage(HttpStatus.OK.value(), response, uri);
+    return ResponseEntity.ok(msg);
   }
 }

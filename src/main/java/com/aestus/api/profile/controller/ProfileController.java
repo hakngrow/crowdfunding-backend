@@ -7,7 +7,19 @@ import com.aestus.api.profile.model.swagger.ResponseMessageWithUserProfiles;
 import com.aestus.api.profile.model.UserProfile;
 import com.aestus.api.profile.service.ProfileService;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
+
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -190,6 +202,61 @@ public class ProfileController {
 
     ResponseMessage msg =
         new ResponseMessage(HttpStatus.OK.value(), profiles, request.getRequestURI());
+
+    return ResponseEntity.ok(msg);
+  }
+
+  /**
+   * Gets {@code walletId} by {@code userType}.
+   *
+   * @param request the http request
+   * @param userType the user type
+   * @return all {@code walletId} by {@code userType}
+   */
+  @GetMapping("/walletId/userType/{userType}")
+  @PreAuthorize("hasAuthority('I') or hasAuthority('A')")
+  @Operation(
+      summary = "Retrieve wallet ids by user type",
+      tags = {"User Profile"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns wallet ids in the <code>data</code> field",
+            content = {
+              @Content(
+                  mediaType = "application/json",
+                  schema = @Schema(implementation = ResponseMessageWithUserProfiles.class),
+                  examples =
+                      @ExampleObject(
+                          externalValue =
+                              "http://localhost:8080/swagger/profile/profile-get-all-walletIds-200.json",
+                          value =
+                              "{\n"
+                                  + "  \"timestamp\": \"2022-08-22T16:25:38.0494338\",\n"
+                                  + "  \"status\": 200,\n"
+                                  + "  \"message\": \"\",\n"
+                                  + "  \"data\": [\n"
+                                  + "    \"SXLRdrywXBntChoDLPjEF1KDQH95eu5EvkA4Uge1hjU\",\n"
+                                  + "    \"5tjN3DGqz5eYjNPipT2Vv9U2gRgqdjo62DE1QjxbC5DK\"\n"
+                                  + "  ],\n"
+                                  + "  \"path\": \"/api/v1/profile/walletId/userType/S\",\n"
+                                  + "  \"ok\": true\n"
+                                  + "}"))
+            }),
+        @ApiResponse(responseCode = "403", description = "Unauthorized request", content = @Content)
+      })
+  public ResponseEntity<ResponseMessage> getWalletIds(
+      @PathVariable String userType, HttpServletRequest request) {
+
+    Iterable<UserProfile> profiles = profileService.getProfilesByUserType(userType);
+
+    List<String> walletIds =
+        StreamSupport.stream(profiles.spliterator(), false)
+            .map(UserProfile::getWalletId)
+            .collect(Collectors.toList());
+
+    ResponseMessage msg =
+        new ResponseMessage(HttpStatus.OK.value(), walletIds, request.getRequestURI());
 
     return ResponseEntity.ok(msg);
   }
@@ -812,6 +879,289 @@ public class ProfileController {
       msg =
           new ResponseMessage(
               HttpStatus.NOT_FOUND.value(), String.format(reason, profile.getId()), uri);
+
+      return new ResponseEntity<>(msg, HttpStatus.NOT_FOUND);
+    }
+  }
+
+  /**
+   * Applies a json patch list of operations to a user profile.
+   *
+   * @param patch the json patch instance with list of operations to be applied on {@code profile}
+   * @param profile the user profile
+   * @return the updated user profile
+   * @throws JsonPatchException exceptions when applying list of operations
+   * @throws JsonProcessingException exceptions when marshalling between json objects
+   */
+  protected UserProfile applyPatchToUserProfile(JsonPatch patch, UserProfile profile)
+      throws JsonPatchException, JsonProcessingException {
+
+    // Configure the object mapper date format to prevent timestamps being converted to arrays
+    ObjectMapper mapper = new ObjectMapper();
+    mapper.registerModule(new JavaTimeModule());
+    mapper.findAndRegisterModules();
+
+    // mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    // mapper.setDateFormat(new StdDateFormat().withColonInTimeZone(true));
+
+    JsonNode patched = patch.apply(mapper.convertValue(profile, JsonNode.class));
+    return mapper.treeToValue(patched, UserProfile.class);
+  }
+
+  /**
+   * Patches the fields of a user profile.
+   *
+   * @param id the user profile id
+   * @param request the request
+   * @return the {@code ResponseMessage} containing the updated user profile
+   */
+  @PatchMapping(path = "/id/{id}", consumes = "application/json-patch+json")
+  @PreAuthorize("hasAuthority('U') or hasAuthority('S') or hasAuthority('I') or hasAuthority('A')")
+  @Operation(
+      summary = "Updates the fields of a user profile",
+      tags = {"User Profile"},
+      requestBody =
+          @io.swagger.v3.oas.annotations.parameters.RequestBody(
+              required = true,
+              description =
+                  "Requires a list of operations to fields of the json user profile object.",
+              content =
+                  @Content(
+                      examples =
+                          @ExampleObject(
+                              externalValue =
+                                  "http://localhost:8080/swagger/profile/profile-patch-id-req.json",
+                              value =
+                                  "[\n"
+                                      + "    {\n"
+                                      + "        \"op\": \"replace\",\n"
+                                      + "        \"path\": \"/email\",\n"
+                                      + "        \"value\": \"patched@gmail.com\"\n"
+                                      + "    },\n"
+                                      + "    {\n"
+                                      + "        \"op\": \"replace\",\n"
+                                      + "        \"path\": \"/phone\",\n"
+                                      + "        \"value\": \"1122334455\"\n"
+                                      + "    }\n"
+                                      + "]"))),
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns updated user profile in the <code>data</code> field",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessageWithUserProfile.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/profile/profile-patch-id-200.json",
+                            value =
+                                "{\n"
+                                    + "  \"timestamp\": \"2022-08-23T15:06:38.7004764\",\n"
+                                    + "  \"status\": 200,\n"
+                                    + "  \"message\": \"\",\n"
+                                    + "  \"data\": {\n"
+                                    + "    \"id\": 1,\n"
+                                    + "    \"username\": \"sbipcc\",\n"
+                                    + "    \"password\": \"$2a$10$qtFUT0sjJckTDCNtnInUQOvhcP98t00YlFdwvPupKs5n3ts6kJEHW\",\n"
+                                    + "    \"firstName\": \"SBIP\",\n"
+                                    + "    \"lastName\": \"Community Clinic\",\n"
+                                    + "    \"email\": \"patched@gmail.com\",\n"
+                                    + "    \"phone\": \"1122334455\",\n"
+                                    + "    \"userType\": \"U\",\n"
+                                    + "    \"registrationDate\": \"2022-08-23T15:06:23.923027\",\n"
+                                    + "    \"walletId\": \"4zFraRa6gbst1RKjua9qT2VwEHEwH1Eqm3WJcKYuH5se\"\n"
+                                    + "  },\n"
+                                    + "  \"path\": \"/api/v1/profile/id/1\",\n"
+                                    + "  \"ok\": true\n"
+                                    + "}"))),
+        @ApiResponse(
+            responseCode = "400",
+            description =
+                "Unable to update fields due to validation reasons. Refer to schema of User Profile for details.",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/profile/profile-patch-id-400.json",
+                            value =
+                                "{\n"
+                                    + "  \"timestamp\": \"2022-08-23T15:11:14.4145037\",\n"
+                                    + "  \"status\": 400,\n"
+                                    + "  \"message\": \"Validation failed for classes [com.aestus.api.profile.model.UserProfile] during update time for groups [javax.validation.groups.Default, ]\\nList of constraint violations:[\\n\\tConstraintViolationImpl{interpolatedMessage='email must be a valid format', propertyPath=email, rootBeanClass=class com.aestus.api.profile.model.UserProfile, messageTemplate='email must be a valid format'}\\n]\",\n"
+                                    + "  \"data\": null,\n"
+                                    + "  \"path\": \"/api/v1/profile/id/1\",\n"
+                                    + "  \"ok\": false\n"
+                                    + "}"))),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Unauthorized request",
+            content = @Content),
+        @ApiResponse(
+            responseCode = "404",
+            description = "User profile with <code>id</code> not found",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/profile/profile-patch-id-404.json",
+                            value =
+                                "{\n"
+                                    + "  \"timestamp\": \"2022-08-23T15:07:42.7917537\",\n"
+                                    + "  \"status\": 404,\n"
+                                    + "  \"message\": \"User profile with id=99 NOT found.\",\n"
+                                    + "  \"data\": null,\n"
+                                    + "  \"path\": \"/api/v1/profile/id/99\",\n"
+                                    + "  \"ok\": false\n"
+                                    + "}")))
+      })
+  public ResponseEntity<ResponseMessage> update(
+      @PathVariable Integer id, @RequestBody JsonPatch patch, HttpServletRequest request) {
+
+    String uri = request.getRequestURI();
+    ResponseEntity<ResponseMessage> entity = getById(id, request);
+    ResponseMessage msg = null;
+
+    if (entity.getBody().isOk()) {
+      try {
+        UserProfile profile =
+            applyPatchToUserProfile(patch, (UserProfile) entity.getBody().getData());
+
+        UserProfile updated = profileService.updateProfile(profile);
+
+        msg = new ResponseMessage(HttpStatus.OK.value(), updated, uri);
+
+        return ResponseEntity.ok(msg);
+      } catch (JsonProcessingException jpex) {
+        msg = new ResponseMessage(HttpStatus.BAD_REQUEST.value(), jpex.getMessage(), uri);
+        return ResponseEntity.badRequest().body(msg);
+      } catch (JsonPatchException jpex) {
+        msg = new ResponseMessage(HttpStatus.BAD_REQUEST.value(), jpex.getMessage(), uri);
+        return ResponseEntity.badRequest().body(msg);
+      }
+    } else return entity;
+  }
+
+  /**
+   * Updates the wallet id of a user profile.
+   *
+   * @param id the id of the user profile
+   * @param walletId the wallet id to be updated
+   * @param request the http request
+   * @return the {@code ResponseMessage} containing the updated user profile
+   */
+  @PatchMapping("/id/{id}/walletId/{walletId}")
+  @PreAuthorize("hasAuthority('U') or hasAuthority('S') or hasAuthority('I') or hasAuthority('A')")
+  @Operation(
+      summary = "Updates the wallet id of a user profile",
+      tags = {"User Profile"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns updated user profile in the <code>data</code> field",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessageWithUserProfile.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/profile/profile-patch-walletId-200.json",
+                            value =
+                                "{\n"
+                                    + "  \"timestamp\": \"2022-08-23T16:08:21.5113646\",\n"
+                                    + "  \"status\": 200,\n"
+                                    + "  \"message\": \"\",\n"
+                                    + "  \"data\": {\n"
+                                    + "    \"id\": 1,\n"
+                                    + "    \"username\": \"sbipcc\",\n"
+                                    + "    \"password\": \"$2a$10$IuH2XU2BqP0TYKypbzqckOh//7TwP6mgiBY.xokujAmWr2SNSw5vC\",\n"
+                                    + "    \"firstName\": \"SBIP\",\n"
+                                    + "    \"lastName\": \"Community Clinic\",\n"
+                                    + "    \"email\": \"sbip-clinic@gmail.com\",\n"
+                                    + "    \"phone\": \"98760001\",\n"
+                                    + "    \"userType\": \"U\",\n"
+                                    + "    \"registrationDate\": \"2022-08-23T16:06:55.315684\",\n"
+                                    + "    \"walletId\": \"12345abcde\"\n"
+                                    + "  },\n"
+                                    + "  \"path\": \"/api/v1/profile/id/1/walletId/12345abcde\",\n"
+                                    + "  \"ok\": true\n"
+                                    + "}"))),
+        @ApiResponse(
+            responseCode = "400",
+            description =
+                "Unable to update wallet id due to validation reasons. Refer to schema of User Profile for details.",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/profile/profile-patch-walletId-400.json",
+                            value =
+                                "{\n"
+                                    + "  \"timestamp\": \"2022-08-23T16:10:23.3185104\",\n"
+                                    + "  \"status\": 400,\n"
+                                    + "  \"message\": \"Validation failed for classes [com.aestus.api.profile.model.UserProfile] during update time for groups [javax.validation.groups.Default, ]\\nList of constraint violations:[\\n\\tConstraintViolationImpl{interpolatedMessage='walletId must contain between 10 to 100 characters', propertyPath=walletId, rootBeanClass=class com.aestus.api.profile.model.UserProfile, messageTemplate='walletId must contain between 10 to 100 characters'}\\n]\",\n"
+                                    + "  \"data\": null,\n"
+                                    + "  \"path\": \"/api/v1/profile/id/1/walletId/12345\",\n"
+                                    + "  \"ok\": false\n"
+                                    + "}"))),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Unauthorized request",
+            content = @Content),
+        @ApiResponse(
+            responseCode = "404",
+            description = "User profile with <code>id</code> not found",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/profile/profile-patch-walletId-404.json",
+                            value =
+                                "{\n"
+                                    + "  \"timestamp\": \"2022-08-23T16:09:48.6797019\",\n"
+                                    + "  \"status\": 404,\n"
+                                    + "  \"message\": \"User profile with id=99 NOT found.\",\n"
+                                    + "  \"data\": null,\n"
+                                    + "  \"path\": \"/api/v1/profile/id/99/walletId/12345abcde\",\n"
+                                    + "  \"ok\": false\n"
+                                    + "}")))
+      })
+  public ResponseEntity<ResponseMessage> updateWalletId(
+      @PathVariable Integer id, @PathVariable String walletId, HttpServletRequest request) {
+
+    String uri = request.getRequestURI();
+    ResponseMessage msg;
+
+    Optional<UserProfile> optProfile = profileService.getProfileById(id);
+
+    if (optProfile.isPresent()) {
+
+      UserProfile profile = optProfile.get();
+      profile.setWalletId(walletId);
+
+      UserProfile updated = profileService.updateProfile(profile);
+
+      msg = new ResponseMessage(HttpStatus.OK.value(), updated, uri);
+
+      return ResponseEntity.ok(msg);
+    } else {
+
+      String reason = "User profile with id=%d NOT found.";
+      msg = new ResponseMessage(HttpStatus.NOT_FOUND.value(), String.format(reason, id), uri);
 
       return new ResponseEntity<>(msg, HttpStatus.NOT_FOUND);
     }

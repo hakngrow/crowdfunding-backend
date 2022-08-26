@@ -1,0 +1,12 @@
+[
+  {
+    "op": "replace",
+    "path": "/email",
+    "value": "patched@gmail.com"
+  },
+  {
+    "op": "replace",
+    "path": "/phone",
+    "value": "1122334455"
+  }
+]

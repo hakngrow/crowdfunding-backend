@@ -13,10 +13,7 @@ import com.aestus.api.request.exception.CreateContractException;
 import com.aestus.api.request.exception.GetProductException;
 import com.aestus.api.request.exception.GetUserProfileException;
 import com.aestus.api.request.exception.RequestException;
-import com.aestus.api.request.model.Proposal;
-import com.aestus.api.request.model.Request;
-import com.aestus.api.request.model.RequestForFunding;
-import com.aestus.api.request.model.RequestForProposal;
+import com.aestus.api.request.model.*;
 import com.aestus.api.request.model.swagger.*;
 import com.aestus.api.request.service.RequestService;
 
@@ -1379,7 +1376,7 @@ public class RequestController {
   /**
    * Gets proposals by {@code fromProfileId}.
    *
-   * @param fromProfileId the profile if of the solution provider
+   * @param fromProfileId the profile id of the solution provider
    * @param status the status of the proposal
    * @param includeProvider when {@code true}, includes the profile of the solution provider in the
    *     returned proposals
@@ -2250,6 +2247,130 @@ public class RequestController {
   }
 
   /**
+   * Gets request for payments by {@code fromProfileId}.
+   *
+   * @param fromProfileId the from user profile id
+   * @param status the status of the request for payments
+   * @param includeToUser when {@code true}, includes the to user profile in the returned request
+   *     for payments
+   * @param httpRequest the http request
+   * @return a list of request for payments
+   */
+  @GetMapping("/rpy/from/{fromProfileId}")
+  @PreAuthorize("hasAuthority('U') or hasAuthority('S') or hasAuthority('A')")
+  @Operation(
+      summary = "Retrieve request for payments by from profile Id",
+      tags = {"Request"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns the list of request for payments in the <code>data</code> field",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessageWithProposals.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/request/request-get-requestForPaymentsFrom-200.json",
+                            value = ""))),
+        @ApiResponse(responseCode = "403", description = "Unauthorized request", content = @Content)
+      })
+  public ResponseEntity<ResponseMessage> getRequestForPaymentsFrom(
+      @PathVariable Integer fromProfileId,
+      @RequestParam(required = false, defaultValue = "") String status,
+      @RequestParam(required = false, defaultValue = "false") Boolean includeToUser,
+      HttpServletRequest httpRequest)
+      throws RequestException {
+
+    Iterable<Request> requests = null;
+
+    if (status.length() > 0)
+      requests =
+          requestService.getRequestsByFromProfileIdAndTypeAndStatus(
+              fromProfileId, Request.TYPE_RPY, status);
+    else
+      requests = requestService.getRequestsByFromProfileIdAndType(fromProfileId, Request.TYPE_RPY);
+
+    ArrayList<RequestForPayment> rpys = new ArrayList<RequestForPayment>();
+
+    for (Request request : requests) {
+      RequestForPayment rpy = new RequestForPayment(request);
+
+      if (includeToUser) rpy.setToProfile(getUserProfile(rpy.getToProfileId(), httpRequest));
+
+      rpys.add(rpy);
+    }
+
+    ResponseMessage msg =
+        new ResponseMessage(HttpStatus.OK.value(), rpys, httpRequest.getRequestURI());
+
+    return ResponseEntity.ok(msg);
+  }
+
+  /**
+   * Gets request for payments by {@code toProfileId}.
+   *
+   * @param toProfileId the to user profile id
+   * @param status the status of the request for payments
+   * @param includeFromUser when {@code true}, includes the from user profile in the returned request
+   *     for payments
+   * @param httpRequest the http request
+   * @return a list of request for payments
+   */
+  @GetMapping("/rpy/to/{toProfileId}")
+  @PreAuthorize("hasAuthority('U') or hasAuthority('S') or hasAuthority('A')")
+  @Operation(
+      summary = "Retrieve request for payments by to profile Id",
+      tags = {"Request"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns the list of request for payments in the <code>data</code> field",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessageWithProposals.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/request/request-get-requestForPaymentsTo-200.json",
+                            value = ""))),
+        @ApiResponse(responseCode = "403", description = "Unauthorized request", content = @Content)
+      })
+  public ResponseEntity<ResponseMessage> getRequestForPaymentsTo(
+      @PathVariable Integer toProfileId,
+      @RequestParam(required = false, defaultValue = "") String status,
+      @RequestParam(required = false, defaultValue = "false") Boolean includeFromUser,
+      HttpServletRequest httpRequest)
+      throws RequestException {
+
+    Iterable<Request> requests = null;
+
+    if (status.length() > 0)
+      requests =
+          requestService.getRequestsByToProfileIdAndTypeAndStatus(
+                  toProfileId, Request.TYPE_RPY, status);
+    else
+      requests = requestService.getRequestsByToProfileIdAndType(toProfileId, Request.TYPE_RPY);
+
+    ArrayList<RequestForPayment> rpys = new ArrayList<RequestForPayment>();
+
+    for (Request request : requests) {
+      RequestForPayment rpy = new RequestForPayment(request);
+
+      if (includeFromUser) rpy.setFromProfile(getUserProfile(rpy.getFromProfileId(), httpRequest));
+
+      rpys.add(rpy);
+    }
+
+    ResponseMessage msg =
+        new ResponseMessage(HttpStatus.OK.value(), rpys, httpRequest.getRequestURI());
+
+    return ResponseEntity.ok(msg);
+  }
+
+  /**
    * Gets request by id.
    *
    * @param id the request id
@@ -2809,6 +2930,81 @@ public class RequestController {
 
     ResponseMessage msg =
         new ResponseMessage(HttpStatus.OK.value(), proposal, request.getRequestURI());
+
+    return ResponseEntity.ok(msg);
+  }
+
+  /**
+   * Gets request for payment by {@code id}.
+   *
+   * @param id the id of the request for payment
+   * @param includeFromUser when {@code true}, includes profile of the from user in the returned
+   *     request for payment
+   * @param includeToUser when {@code true}, includes profile of the to user in the returned request
+   *     for payment
+   * @param request the http request
+   * @return the request for payment with the id if available, if not, the NOT FOUND HTTP status
+   */
+  @GetMapping("/rpy/id/{id}")
+  @PreAuthorize("hasAuthority('U') or hasAuthority('S') or hasAuthority('A')")
+  @Operation(
+      summary = "Retrieve a proposal",
+      tags = {"Request"},
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Returns a proposal in the <code>data</code> field",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessageWithProposal.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/request/request-get-requestForPayment-200.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Unauthorized request",
+            content = @Content),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Request with <code>id</code> is not a proposal",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessageWithProposal.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/request/request-get-requestForPayment-400.json",
+                            value = ""))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Request with <code>id</code> not found",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ResponseMessage.class),
+                    examples =
+                        @ExampleObject(
+                            externalValue =
+                                "http://localhost:8080/swagger/request/request-get-requestForPayment-404.json",
+                            value = "")))
+      })
+  public ResponseEntity<ResponseMessage> getRequestForPayment(
+      @PathVariable Integer id,
+      @RequestParam(required = false, defaultValue = "false") Boolean includeFromUser,
+      @RequestParam(required = false, defaultValue = "false") Boolean includeToUser,
+      HttpServletRequest request)
+      throws EntityNotFoundException, RequestException {
+
+    RequestForPayment rpy = requestService.getRequestForPayment(id);
+
+    if (includeFromUser) rpy.setFromProfile(getUserProfile(rpy.getFromProfileId(), request));
+    if (includeToUser) rpy.setToProfile(getUserProfile(rpy.getToProfileId(), request));
+
+    ResponseMessage msg = new ResponseMessage(HttpStatus.OK.value(), rpy, request.getRequestURI());
 
     return ResponseEntity.ok(msg);
   }

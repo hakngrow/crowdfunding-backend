@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-08-23T16:10:23.3185104",
+  "status": 400,
+  "message": "Validation failed for classes [com.aestus.api.profile.model.UserProfile] during update time for groups [javax.validation.groups.Default, ]\nList of constraint violations:[\n\tConstraintViolationImpl{interpolatedMessage='walletId must contain between 10 to 100 characters', propertyPath=walletId, rootBeanClass=class com.aestus.api.profile.model.UserProfile, messageTemplate='walletId must contain between 10 to 100 characters'}\n]",
+  "data": null,
+  "path": "/api/v1/profile/id/1/walletId/12345",
+  "ok": false
+}

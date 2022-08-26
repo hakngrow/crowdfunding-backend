@@ -1,11 +1,8 @@
 package com.aestus.api.request.service.impl;
 
 import com.aestus.api.request.exception.*;
-import com.aestus.api.request.model.Proposal;
+import com.aestus.api.request.model.*;
 import com.aestus.api.common.exception.EntityNotFoundException;
-import com.aestus.api.request.model.Request;
-import com.aestus.api.request.model.RequestForFunding;
-import com.aestus.api.request.model.RequestForProposal;
 import com.aestus.api.request.repository.RequestRepository;
 import com.aestus.api.request.service.RequestService;
 
@@ -146,6 +143,16 @@ public class RequestServiceImpl implements RequestService {
     } else throw new InvalidRequestTypeException(request.getType());
   }
 
+  public RequestForPayment getRequestForPayment(int id)
+      throws InvalidRequestTypeException, EntityNotFoundException {
+
+    Request request = getRequestById(id);
+
+    if (request.isRPY()) {
+      return new RequestForPayment(request);
+    } else throw new InvalidRequestTypeException(request.getType());
+  }
+
   public Iterable<RequestForFunding> getRequestForFundingsFor(int providerId)
       throws InvalidRequestTypeException {
 
@@ -167,6 +174,30 @@ public class RequestServiceImpl implements RequestService {
     }
 
     return rffs;
+  }
+
+  public Iterable<RequestForPayment> getRequestForPaymentsFrom(int fromProfileId) {
+
+    Iterable<Request> requests =
+        requestRepository.findByFromProfileIdAndType(fromProfileId, Request.TYPE_RPY);
+
+    ArrayList<RequestForPayment> rpys = new ArrayList<RequestForPayment>();
+
+    for (Request request : requests) rpys.add(new RequestForPayment(request));
+
+    return rpys;
+  }
+
+  public Iterable<RequestForPayment> getRequestForPaymentsTo(int toProfileId) {
+
+    Iterable<Request> requests =
+        requestRepository.findByToProfileIdAndType(toProfileId, Request.TYPE_RPY);
+
+    ArrayList<RequestForPayment> rpys = new ArrayList<RequestForPayment>();
+
+    for (Request request : requests) rpys.add(new RequestForPayment(request));
+
+    return rpys;
   }
 
   public Request createRequest(Request request) {

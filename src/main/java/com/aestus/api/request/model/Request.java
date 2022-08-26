@@ -31,6 +31,8 @@ public class Request {
   public static String TYPE_RFP = "RFP"; // Request for proposal
   public static String TYPE_PRO = "PRO"; // Proposal from solution provider
   public static String TYPE_RFF = "RFF"; // Request for funding
+
+  public static String TYPE_RPY = "RPY"; // Request for payment
   public static String STATUS_OPEN = "O"; // Initial status for all requests
   public static String STATUS_CLOSED = "C"; // Request for proposal closed
   public static String STATUS_ACCEPTED = "ACC"; // Proposal accepted
@@ -64,9 +66,7 @@ public class Request {
    */
   private Integer requestId;
 
-  @NotBlank(message = "title must not be blank")
-  @Size(min = 1, max = 300, message = "title must contain between 1 to 300 characters")
-  @Column(nullable = false)
+  @Size(max = 300, message = "title must contain between 1 to 300 characters")
   private String title;
 
   /** The type of the request */
@@ -80,9 +80,7 @@ public class Request {
   @Column(nullable = false)
   private String status;
 
-  @NotBlank(message = "description must not be blank")
-  @Size(min = 1, message = "description must contain at least 1 character")
-  @Column(nullable = false, columnDefinition = "text")
+  @Column(columnDefinition = "text")
   private String description;
 
   @NotNull(message = "cost must not be null")
@@ -94,9 +92,7 @@ public class Request {
   @Positive(message = "repayment must be positive")
   private Long repayment;
 
-  @NotBlank(message = "specifications must not be blank")
-  @Size(min = 1, message = "specifications must contain at least 1 character")
-  @Column(nullable = false, columnDefinition = "text")
+  @Column(columnDefinition = "longtext")
   private String specifications;
 
   @NotNull(message = "createTimestamp must not be Null")
@@ -157,6 +153,9 @@ public class Request {
   }
   public boolean isRFF() {
     return this.type.equals(TYPE_RFF);
+  }
+  public boolean isRPY() {
+    return this.type.equals(TYPE_RPY);
   }
 
   public boolean isOpen() {

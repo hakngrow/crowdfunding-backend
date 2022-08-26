@@ -2,8 +2,10 @@ package com.aestus.api.profile.repository;
 
 import com.aestus.api.profile.model.UserProfile;
 
+import com.aestus.api.request.model.Request;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,4 +30,12 @@ public interface ProfileRepository extends CrudRepository<UserProfile, Integer> 
    *     depending on the outcome of the search.
    */
   Optional<UserProfile> findByEmail(String email);
+
+  /**
+   * Find by user type.
+   *
+   * @param userType the user type
+   * @return a list of {@code UserProfile}
+   */
+  List<UserProfile> findByUserType(String userType);
 }

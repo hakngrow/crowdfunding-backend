@@ -1,0 +1,11 @@
+{
+  "timestamp": "2022-08-22T16:25:38.0494338",
+  "status": 200,
+  "message": "",
+  "data": [
+    "SXLRdrywXBntChoDLPjEF1KDQH95eu5EvkA4Uge1hjU",
+    "5tjN3DGqz5eYjNPipT2Vv9U2gRgqdjo62DE1QjxbC5DK"
+  ],
+  "path": "/api/v1/profile/walletId/userType/S",
+  "ok": true
+}

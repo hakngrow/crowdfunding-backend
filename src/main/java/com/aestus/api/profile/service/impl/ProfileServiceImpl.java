@@ -23,6 +23,10 @@ public class ProfileServiceImpl implements ProfileService {
     return profileRepository.findAll();
   }
 
+  public Iterable<UserProfile> getProfilesByUserType(String userType) {
+    return profileRepository.findByUserType(userType);
+  }
+
   public Optional<UserProfile> getProfileById(int id) {
     return profileRepository.findById(id);
   }

@@ -18,6 +18,13 @@ public interface ProfileService {
   Iterable<UserProfile> getAllProfiles();
 
   /**
+   * Gets user profiles by {@code userType}.
+   *
+   * @return a list of user profiles
+   */
+  Iterable<UserProfile> getProfilesByUserType(String userType);
+
+  /**
    * Gets a user profile by id.
    *
    * @param id the id

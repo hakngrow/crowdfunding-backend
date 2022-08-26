@@ -17,15 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.web.client.ClientHttpRequestFactorySupplier;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.http.client.reactive.HttpComponentsClientHttpConnector;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /** The Aestus user profile microservice. */
 @Slf4j
@@ -34,6 +30,9 @@ public class AestusMicroservices {
 
   @Value("${spring.profiles.active:}")
   private final String activeProfile = null;
+
+  @Value("${server.ipAddress}")
+  private final String serverIpAddress = null;
 
   @Value("${server.port}")
   private final String serverPort = null;
@@ -244,7 +243,7 @@ public class AestusMicroservices {
                 + "dialysate conductivity in accordance with each patient. It mainly consists of Monitor/alarm "
                 + "part, Dialysate supply/UF control part, Extracorporeal blood circuit part, and Electrical control "
                 + "part.",
-            "http://localhost:" + this.serverPort + "/images/dialysis.jpg",
+            "http://" + this.serverIpAddress + ":" + this.serverPort + "/images/dialysis.jpg",
             1200000L,
             "Supported by the advanced technologies of TORAY, TR-8000 offers comfortable dialysis "
                 + "treatment to patients, easy operation to medical staff and contributes to medical development.\n"
@@ -269,7 +268,7 @@ public class AestusMicroservices {
                 + "tailor-made solutions as individual pumps, small therapy units, or a complex infusion system.\n"
                 + "The small, light and intuitive configuration of the pump provides a userfriendly solution to "
                 + "complex therapies, integrating all clinical areas into one system.",
-            "http://localhost:" + this.serverPort + "/images/infusion-pump.jpg",
+            "http://" + this.serverIpAddress + ":" + this.serverPort + "/images/infusion-pump.jpg",
             600000L,
             "- Light weight pump (1.4kg) and reliable battery duration of 8hours on a 25 ml/h rate\n"
                 + "- Therapy Profiles available : Dose Rate Calculation, Dose\n"
@@ -290,7 +289,7 @@ public class AestusMicroservices {
                 + "a wide range of applications including obstetrics, abdominal, gynecology, pediatric, small "
                 + "organs, neonatal cephalic, adult cephalic, trans-rectal, trans-vaginal, MSK (conventional, "
                 + "superficial), urology, adult cardiac, and peripheral vessel.",
-            "http://localhost:" + this.serverPort + "/images/ultrasound.jpg",
+            "http://" + this.serverIpAddress + ":" + this.serverPort + "/images/ultrasound.jpg",
             2800000L,
             "The Samsung HS40, similarly to the HS60 and HS50, is empowered by the “S-Vision Imaging "
                 + "Engine” featuring 64 transmitting channels, and is equipped with a number of high performing "
@@ -309,7 +308,7 @@ public class AestusMicroservices {
                 + "setup with a high level of clinical flexibility. Selected top-of-the-line technologies provide "
                 + "outstanding image quality. Achieve more financial flexibility with a digital X-ray machine that "
                 + "offers expert solutions for general radiography in an economical way.",
-            "http://localhost:" + this.serverPort + "/images/x-ray.png",
+            "http://" + this.serverIpAddress + ":" + this.serverPort + "/images/x-ray.png",
             7200000L,
             "Patient table2 and tabletop\n"
                 + "- Table height: 75 cm (29.5\")\n"
@@ -334,7 +333,7 @@ public class AestusMicroservices {
                 + "vital signs of up to 64 patients connected to Vista 120/Vista 120 S bedside monitors. This "
                 + "central surveillance streamlines workflow for clinicians, while significantly increasing "
                 + "patient safety.",
-            "http://localhost:" + this.serverPort + "/images/patient-monitoring.jpg",
+            "http://" + this.serverIpAddress + ":" + this.serverPort + "/images/patient-monitoring.jpg",
             3400000L,
             "The Vista 120 S displays up to eleven waveforms in an easy-to-configure layout and offers a "
                 + "core set of essential parameters including 3/5 lead ECG, non-invasive blood pressure, respiration "

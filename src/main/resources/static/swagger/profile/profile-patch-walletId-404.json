@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-08-23T16:09:48.6797019",
+  "status": 404,
+  "message": "User profile with id=99 NOT found.",
+  "data": null,
+  "path": "/api/v1/profile/id/99/walletId/12345abcde",
+  "ok": false
+}

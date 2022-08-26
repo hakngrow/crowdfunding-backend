@@ -1,0 +1,19 @@
+{
+  "timestamp": "2022-08-23T16:08:21.5113646",
+  "status": 200,
+  "message": "",
+  "data": {
+    "id": 1,
+    "username": "sbipcc",
+    "password": "$2a$10$IuH2XU2BqP0TYKypbzqckOh//7TwP6mgiBY.xokujAmWr2SNSw5vC",
+    "firstName": "SBIP",
+    "lastName": "Community Clinic",
+    "email": "sbip-clinic@gmail.com",
+    "phone": "98760001",
+    "userType": "U",
+    "registrationDate": "2022-08-23T16:06:55.315684",
+    "walletId": "12345abcde"
+  },
+  "path": "/api/v1/profile/id/1/walletId/12345abcde",
+  "ok": true
+}

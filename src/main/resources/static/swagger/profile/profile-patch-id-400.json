@@ -1,0 +1,8 @@
+{
+  "timestamp": "2022-08-23T15:11:14.4145037",
+  "status": 400,
+  "message": "Validation failed for classes [com.aestus.api.profile.model.UserProfile] during update time for groups [javax.validation.groups.Default, ]\nList of constraint violations:[\n\tConstraintViolationImpl{interpolatedMessage='email must be a valid format', propertyPath=email, rootBeanClass=class com.aestus.api.profile.model.UserProfile, messageTemplate='email must be a valid format'}\n]",
+  "data": null,
+  "path": "/api/v1/profile/id/1",
+  "ok": false
+}

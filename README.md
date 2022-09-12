@@ -1,3 +1,3 @@
-### Crowdfunding Platform - Backend
+### Asset Tokenization Platform - Backend
 
 Using Spring Boot
